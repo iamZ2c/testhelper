@@ -57,8 +57,20 @@
 <!--引入jquery，可以发起请求-->
 <script src="/static/js/jquery-1.11.0.min.js" type="text/javascript"></script>
 <script>
-    function register(){
+    function register() {
+        const user_name = document.getElementById("id_username").value;
+        const pass_word = document.getElementById("id_password").value;
+        $.get("/register_ac/", {
+            "user_name": user_name,
+            "pass_word": pass_word
+        }, function (ret) {
+            if (ret === 'register success') {
+                alert("register success")
+            } else {
+                alert("register fail account err")
+            }
 
+        })
     }
 
 
@@ -69,7 +81,12 @@
             "user_name": user_name,
             "pass_word": pass_word
         }, function (ret) {
-            alert("username or password err")
+            if (ret === 'login success') {
+                document.location.replace('/home/')
+            } else {
+                alert("username or password err")
+            }
+
         })
 
     }

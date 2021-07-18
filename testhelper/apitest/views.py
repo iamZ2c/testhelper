@@ -1,4 +1,5 @@
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
@@ -16,6 +17,7 @@ def child(request, eid, oid):
 
 
 # 主页
+@login_required
 def home(request):
     return render(request, 'home.html')
 
@@ -33,9 +35,14 @@ def login_ac(request):
     user = auth.authenticate(username=username, password=password)
 
     if user:
-        return HttpResponseRedirect('/home/')
+        # django 登陆函数
+        auth.login(request, user)
+
+        # request.session['user'] = username
+        return HttpResponse('login success')
     else:
-        return HttpResponse('')
+
+        return HttpResponse('login fail')
 
 
 # 注册账号
@@ -46,6 +53,6 @@ def register_ac(request):
     try:
         user = User.objects.create_user(username=username, password=password)
         user.save()
-        return HttpResponse('注册成功')
+        return HttpResponse('register success')
     except:
-        return HttpResponse('注册失败~用户名好像已经存在了~')
+        return HttpResponse('register fail')
