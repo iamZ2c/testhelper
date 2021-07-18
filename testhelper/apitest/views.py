@@ -56,3 +56,9 @@ def register_ac(request):
         return HttpResponse('register success')
     except:
         return HttpResponse('register fail')
+
+
+# 退出平台
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect('/login')

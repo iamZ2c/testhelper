@@ -26,6 +26,7 @@ urlpatterns = [
     path('login/', apitest.views.login),
     path('login_ac/', apitest.views.login_ac),
     path('register_ac/', apitest.views.register_ac),
+    path('logout/', apitest.views.logout),
     path(r"^child/(?P<eid>.+)/(?P<oid>.*)/$", apitest.views.child),
 
 ]
