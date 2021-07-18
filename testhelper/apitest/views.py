@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
-# 这里是welecome 0.0.2
+# 这里是welecome 0.0.3
 def welcome(request):
     return render(request, template_name='home.html')
 
