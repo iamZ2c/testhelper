@@ -17,7 +17,7 @@ def child(request, eid, oid):
     return render(request, eid)
 
 
-# 主页
+# 主页需要登录
 @login_required
 def home(request):
     return render(request, 'home.html', {
