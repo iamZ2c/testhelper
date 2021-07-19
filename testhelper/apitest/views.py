@@ -30,7 +30,7 @@ def login(request):
     return render(request, 'login.html')
 
 
-# 登陆判断
+# 登陆判断方法
 def login_ac(request):
     username = request.GET['user_name']
     password = request.GET['pass_word']
