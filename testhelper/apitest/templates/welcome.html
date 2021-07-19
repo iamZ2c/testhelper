@@ -8,12 +8,12 @@
 </head>
 
 <link rel="stylesheet" type="text/css" href="/static/css/normalize.css"/><!--CSS RESET-->
-<link rel="stylesheet" type="text/css" href="/static/css/htmleaf-demo.css"><!--演示页面样式，使用时可以不引用-->
+{#<link rel="stylesheet" type="text/css" href="/static/css/htmleaf-demo.css"><!--演示页面样式，使用时可以不引用-->#}
 <!--awesome font include-->
 <link type="text/css" rel="stylesheet" href="/static/assets/css/font-awesome.min.css"/>
 <!--include plugin css-->
 <link type="text/css" rel="stylesheet" href="/static/src/jquery-rvnm.css"/>
-<body>
+<body style="background-image: url('/static/src/img/background_img.png')">
 
 <button onclick="display_menu()"
         id="menu_btn"
@@ -47,7 +47,7 @@
     </ul>
 
 </nav>
-<div id="wrapper">
+<div id="wrapper" style="text-align: center">
     {% block content %}{% endblock content %}
 </div>
 
