@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
+from apitest.models import SugText
 
 
 # Create your views here.
@@ -19,7 +20,9 @@ def child(request, eid, oid):
 # 主页
 @login_required
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'home.html', {
+        "username": request.user.username
+    })
 
 
 # 登陆页面
@@ -38,7 +41,7 @@ def login_ac(request):
         # django 登陆函数
         auth.login(request, user)
 
-        # request.session['user'] = username
+        request.session['user'] = username
         return HttpResponse('login success')
     else:
 
@@ -62,3 +65,24 @@ def register_ac(request):
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/login')
+
+
+@login_required
+def sug(request):
+    return render(request, 'suggest.html', {
+        "username": request.user.username
+    })
+
+
+# 获取吐槽文本
+@login_required
+def sug_ac(request):
+    print(request.user.username)
+    SugText.objects.create(user_account=request.user.username, sug_text=request.GET['sug_text'])
+    print(request.GET['sug_text'])
+    return HttpResponse('success')
+
+
+# 帮助页面
+def opt_help(request):
+    return render(request, 'opt_help.html')

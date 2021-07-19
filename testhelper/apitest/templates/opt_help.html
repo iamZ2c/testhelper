@@ -1,0 +1,17 @@
+{% extends 'welcome.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %} Help {% endblock title %}
+</head>
+{% block content %}
+
+    <body style="text-align: center">
+    </body>
+
+{% endblock content %}
+{% block custom_scrpit %}
+    document.getElementById("menu_btn").click()
+{% endblock custom_scrpit %}
+</html>

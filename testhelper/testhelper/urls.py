@@ -23,10 +23,19 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('welcome/', apitest.views.welcome),
     path('home/', apitest.views.home),
+    # 登陆页面
     path('login/', apitest.views.login),
+    # 登陆接口
     path('login_ac/', apitest.views.login_ac),
+    # 注册跳转接口
     path('register_ac/', apitest.views.register_ac),
+    # 登出
     path('logout/', apitest.views.logout),
+    # 建议页面
+    path('sug/', apitest.views.sug),
+    # 提交建议
+    path('sug_ac/', apitest.views.sug_ac),
+    path('help/', apitest.views.opt_help),
     path(r"^child/(?P<eid>.+)/(?P<oid>.*)/$", apitest.views.child),
 
 ]

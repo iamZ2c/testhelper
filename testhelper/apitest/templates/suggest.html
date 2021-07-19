@@ -1,0 +1,40 @@
+{% extends 'welcome.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}suggest{% endblock title %}
+</head>
+<body>
+{% block content %}
+    <div style="text-align: center">
+        <h1>
+            <br>
+            欢迎{{ username }}使用 接口测试平台
+        </h1>
+        <h3>welcome to use Apitest</h3>
+        <textarea id="sug_input" cols="50" rows="10"
+                  placeholder="匿名吐槽，点击下方按钮可以怒喷开发人员"
+                  style="border-radius: 5px;padding-left: 10px; box-shadow: 4px 4px 9px grey;"></textarea>
+    </div>
+    <br>
+    <div style="text-align: center">
+        <button style="border-radius: 20px 20px 20px 20px" onclick="sug_ac()">呸，你写的啥玩意儿!</button>
+    </div>
+    <script>
+        function sug_ac() {
+            $.get(/sug_ac/, {
+                    "sug_text": document.getElementById("sug_input").value
+                }, function (ret) {
+                    if (ret === 'success') {
+                        alert("嘴炮成功了哟")
+                    }
+
+                }
+            )
+        }
+    </script>
+
+{% endblock content %}
+</body>
+</html>
