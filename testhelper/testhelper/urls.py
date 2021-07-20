@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 
 import apitest.views
 from apitest.views import *
@@ -36,6 +36,6 @@ urlpatterns = [
     # 提交建议
     path('sug_ac/', apitest.views.sug_ac),
     path('help/', apitest.views.opt_help),
-    path(r"^child/(?P<eid>.+)/(?P<oid>.*)/$", apitest.views.child),
+    re_path("^child/(?P<eid>.+)/(?P<oid>.*)/$", apitest.views.child),
 
 ]

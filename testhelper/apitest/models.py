@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-
+# 建议回收表
 class SugText(models.Model):
     user_account = models.CharField(max_length=20, null=True)
     sug_text = models.CharField(max_length=200, null=True)

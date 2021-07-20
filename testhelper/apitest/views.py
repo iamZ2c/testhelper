@@ -13,7 +13,11 @@ def welcome(request):
     return render(request, template_name='home.html')
 
 
+# 页面分发器不知道有什么卵用
 def child(request, eid, oid):
+    print("111111", eid)
+    if eid == 'home':
+        return render(request, 'home.html', {"username": request.user.username})
     return render(request, eid)
 
 

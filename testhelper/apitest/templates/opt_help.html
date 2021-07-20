@@ -30,8 +30,8 @@
         <a href="javascript: display('4')" style="text-decoration:none">后台</a> <br><br>
         <a href="javascript: display('5')" style="text-decoration:none">账户</a> <br><br>
     </div>
-    <div style="padding: 1% ;position: absolute;left: 30%;top: 30%; color: white ;border: 3px solid white; background: lightgrey ;border-radius: 15px">
-    <span id="help_1" >
+    <div style="padding: 1% ;position: absolute;left: 30%;top: 30%; color: white ;border: 3px solid white; background: lightgrey ;border-radius: 15px; height: 30%; width: 40%">
+    <span id="help_1">
         <h2>项目列表</h2>
         项目列表作为接口测试平台的基础单元，用来存放用户的接口数据等信息。<br>
         不同项目之间无法完全互通，数据互相不影响，属于平行世界。<br>
@@ -77,10 +77,16 @@
 {% endblock content %}
 {% block custom_scrpit %}
     document.getElementById("menu_btn").click()
-    <script>
-        function display(id){
-            document.getElementById('help')
-        }
-    </script>
 {% endblock custom_scrpit %}
+
+{% block text_display_scrpit %}
+    function display(id){
+    document.getElementById("help_1").style.display = "none";
+    document.getElementById("help_2").style.display = "none";
+    document.getElementById("help_3").style.display = "none";
+    document.getElementById("help_4").style.display = "none";
+    document.getElementById("help_5").style.display = "none";
+    document.getElementById("help_" + id).style.display = "block";
+    }
+{% endblock text_display_scrpit %}
 </html>
