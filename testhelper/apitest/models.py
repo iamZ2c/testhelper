@@ -13,3 +13,15 @@ class SugText(models.Model):
 
     class Meta:
         db_table = "sug_text"
+
+
+# 项目列表
+class Project(models.Model):
+    pid = models.IntegerField(null=True)    # 项目序号
+    name = models.CharField(max_length=100, null=True)  # 项目名字
+    mark = models.CharField(max_length=1000, null=True)  # 项目备注
+    username = models.CharField(max_length=15, null=True)  # 项目创建者名字
+    other_user = models.CharField(max_length=100, null=True)  # 项目其他创建者名字
+
+    def __str__(self):
+        return str(self.name)

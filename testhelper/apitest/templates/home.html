@@ -7,9 +7,10 @@
 </head>
 {% block content %}
     <style>
-        a{
+        a {
             color: #96a2b4;
         }
+
         h2 {
             color: white;
         }
@@ -22,28 +23,31 @@
             color: white;
         }
     </style>
-    <body style="text-align: center">
-    <br><br><br>
-    <h1>欢迎使用{{ username }}接口测试平台</h1>
+    <div style="text-align: center">
+        <body style="text-align: center">
+        <br><br><br>
+        <h1>欢迎使用{{ username }}接口测试平台</h1>
 
-    <div style="border: 2px solid white; width: 200px; text-align: left; margin-left: -webkit-calc(50% - 100px); padding-left: 10px">
-        <h2>如何使用：</h2>
-        <span>1. 打开左侧菜单</span>
-        <br>
-        <span>2. 找到要用的功能</span>
-        <br>
-        <span> 3. 点击进入</span>
-        <br><br>
+        <div style="border: 2px solid white; width: 200px; text-align: left; margin-left: -webkit-calc(50% - 100px); padding-left: 10px">
+            <h2>如何使用：</h2>
+            <span>1. 打开左侧菜单</span>
+            <br>
+            <span>2. 找到要用的功能</span>
+            <br>
+            <span> 3. 点击进入</span>
+            <br><br>
 
+        </div>
+        <h2>更新信息：</h2>
+        <span>项目管理模块已经上线，并已经修复已知bug</span>
+
+        <h2>反馈：</h2>
+        <span>如果有问题请反馈到邮箱：zhangchencheng@bytedance.com</span>
+        <span>或进入<a href="/sug/">平台优化建议</a>进行反馈</span>
+        <h2></h2>
+        <span><img src="/static/src/img/jdl.png" alt="抱歉，图片走丢了 5555" width="650px"></span>
+        </body>
     </div>
-    <h2>更新信息：</h2>
-    <span>项目管理模块已经上线，并已经修复已知bug</span>
 
-    <h2>反馈：</h2>
-    <span>如果有问题请反馈到邮箱：zhangchencheng@bytedance.com</span>
-    <span>或进入<a href="/sug/">平台优化建议</a>进行反馈</span>
-    <h2></h2>
-    <span><img src="/static/src/img/jdl.png" alt="抱歉，图片走丢了 5555" width="650px"></span>
-    </body>
 {% endblock content %}
 </html>

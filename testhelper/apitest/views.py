@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
-from apitest.models import SugText
+from apitest.models import SugText, Project
 
 
 # Create your views here.
@@ -13,12 +13,23 @@ def welcome(request):
     return render(request, template_name='home.html')
 
 
-# 页面分发器不知道有什么卵用
+# 页面分发器
 def child(request, eid, oid):
-    print("111111", eid)
     if eid == 'home':
         return render(request, 'home.html', {"username": request.user.username})
-    return render(request, eid)
+    elif eid == 'project_manage':
+        res = child_json(eid)
+        return render(request, 'project_manage.html', res)
+
+
+# 数据分发器
+def child_json(eid):
+    res = {}
+    if eid == 'project_manage':
+        data = Project.objects.all()
+        res = {"projects": data}
+        print(res)
+    return res
 
 
 # 主页需要登录++++

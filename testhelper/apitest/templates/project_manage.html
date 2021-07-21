@@ -1,0 +1,91 @@
+{% extends 'welcome.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}project{% endblock title %}
+</head>
+<body>
+{% block content %}
+    <script src="/static/bootstrap-3.4.1-dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/static/bootstrap-3.4.1-dist/css/bootstrap.min.css"/>
+    <h2 style="font-size: xxx-large">
+        <span style="color: white">项目管理</span>
+    </h2>
+    <br><br><br>
+
+
+
+    <div style="width: 87%; height: 90%">
+        <style>
+
+        </style>
+        <div style="color: white">
+            <button style="background-color: #1d7db1" class="btn-group-justified">+>>>>>新增项目<<<<<+
+        </button>
+        </div>
+
+        <table class="table table-striped" style="background-color: lightgrey ">
+            <thead>
+            <tr>
+                <th><span style="color: white">项目id</span></th>
+                <th><span style="color: white">项目名称</span></th>
+                <th><span style="color: white">合作创建者</span></th>
+                <th><span style="color: white">创建者</span></th>
+                <th><span style="color: white">备注</span></th>
+                <th><span style="color: white">操作</span></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for project in projects %}
+                <tr>
+                    <td>{{ project.id }}</td>
+                    <td>{{ project.name }}</td>
+                    <td>{{ project.orther_name }}</td>
+                    <td>{{ project.username }}</td>
+                    <td>{{ project.mark }}</td>
+                    <td>
+                        <button class="btn-success">详情</button>
+                        <button class="btn-danger" onclick="del_project({{ project.id }})">删除</button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock content %}
+
+
+
+<script>
+        function del_project(id) {
+        console.log(id)
+        if (confirm('确定删除项目吗？') === false){
+            return
+        }$.get('/del_project/', {
+            'id': id
+        }, function (ret) {
+            document.location.reload()
+        })
+    }
+</script>
+{% block custom_scrpit %}
+    document.getElementById("menu_btn").click()
+{% endblock custom_scrpit %}
+{% block text_display_scrpit %}
+    function del_project(id) {
+        console.log(id)
+        if (confirm('确定删除项目吗？') === false){
+            return
+        }$.get('/del_project/', {
+            'id': id
+        }, function (ret) {
+            document.location.reload()
+        })
+    }
+{% endblock text_display_scrpit %}
+</body>
+</html>
