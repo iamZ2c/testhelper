@@ -99,5 +99,24 @@ def sug_ac(request):
 
 
 # 帮助页面
+@login_required
 def opt_help(request):
     return render(request, 'opt_help.html')
+
+
+# 删除项目方法
+@login_required
+def del_project(request):
+    pid = request.GET['pid']
+    Project.objects.filter(pid=pid).delete()
+    return HttpResponse('')
+
+
+# 添加项目方法
+@login_required
+def create_project(request):
+    user = request.user.username
+    p_name = request.GET['p_name']
+    p_mark = request.GET['p_mark']
+    Project.objects.create(name=p_name, mark=p_mark, username=user)
+    return HttpResponse('')

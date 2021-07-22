@@ -15,15 +15,33 @@
     <br><br><br>
 
 
+    <!--添加项目的弹窗-->
+    <div id="add_project" style="text-align: center ;width: 35%; height: 25%;background-color: white; border: 2px solid lightgoldenrodyellow; position: absolute;
+            left: 30%; top: 30%; padding-left: 10px; box-shadow: 8px 8px 15px grey; border-radius: 5px;display:none;">
+        <h3>项目名称：(最多100字)</h3>
+        <input id="p_name" type="text" placeholder="请输入项目名称" style="width: 95%">
+        <h3>项目备注</h3>
+        <input id="p_mark" type="text" placeholder="请输入项目备注" style="width: 95%">
+        <br><br><br>
+        <button onclick="hide('add_project')" class="btn-danger" style="margin-right: 10%">取消</button>
+
+        <button onclick="create_project()" class="btn-success">确定</button>
+
+
+        <br><br>
+    </div>
+
 
     <div style="width: 87%; height: 90%">
         <style>
 
         </style>
         <div style="color: white">
-            <button style="background-color: #1d7db1" class="btn-group-justified">+>>>>>新增项目<<<<<+
-        </button>
+            <button onclick="display('add_project')" style="background-color: #1d7db1" class="btn-group-justified">
+                +>>>>>新增项目<<<<<+
+            </button>
         </div>
+
 
         <table class="table table-striped" style="background-color: lightgrey ">
             <thead>
@@ -40,7 +58,7 @@
             <tbody>
             {% for project in projects %}
                 <tr>
-                    <td>{{ project.id }}</td>
+                    <td>{{ project.pid }}</td>
                     <td>{{ project.name }}</td>
                     <td>{{ project.orther_name }}</td>
                     <td>{{ project.username }}</td>
@@ -51,6 +69,7 @@
                     </td>
                 </tr>
             {% endfor %}
+
             </tbody>
         </table>
 
@@ -61,31 +80,60 @@
 
 
 <script>
-        function del_project(id) {
-        console.log(id)
-        if (confirm('确定删除项目吗？') === false){
-            return
-        }$.get('/del_project/', {
-            'id': id
-        }, function (ret) {
-            document.location.reload()
-        })
+    function create_project() {
+        const p_name = document.getElementById("p_name").value;
+        const p_mark = document.getElementById("p-mark").value;
+
+        $.get('create_project/', {
+                p_name: p_name,
+                p_mark: p_mark,
+            },function (ret){
+                document.location.reload()
+            }
+        )
     }
 </script>
 {% block custom_scrpit %}
     document.getElementById("menu_btn").click()
 {% endblock custom_scrpit %}
 {% block text_display_scrpit %}
-    function del_project(id) {
-        console.log(id)
-        if (confirm('确定删除项目吗？') === false){
-            return
-        }$.get('/del_project/', {
-            'id': id
-        }, function (ret) {
-            document.location.reload()
-        })
+    function del_project(pid) {
+    console.log(pid)
+    if (confirm('确定删除项目吗？') === false){
+    return
+    }$.get('/del_project/', {
+    'pid': pid
+    }, function (ret) {
+    document.location.reload()
+    })
     }
 {% endblock text_display_scrpit %}
+<!-- 显示方法 -->
+{% block custom1_scrpit %}
+    function display(id){
+    document.getElementById(id).style.display = 'block'
+    }
+{% endblock custom1_scrpit %}
+<!-- 隐藏方法 -->
+{% block custom2_scrpit %}
+    function hide(id){
+    document.getElementById(id).style.display = 'none'
+    }
+{% endblock custom2_scrpit %}
+
+<!-- 创建项目方法 -->
+{% block custom3_scrpit %}
+     function create_project() {
+        const p_name = document.getElementById("p_name").value;
+        const p_mark = document.getElementById("p_mark").value;
+        $.get('/create_project/', {
+                p_name: p_name,
+                p_mark: p_mark,
+            },function (ret){
+                document.location.reload()
+            }
+        )
+    }
+{% endblock custom3_scrpit %}
 </body>
 </html>
