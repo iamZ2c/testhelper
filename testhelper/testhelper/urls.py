@@ -23,8 +23,6 @@ urlpatterns = [
     # ================== page ==============================
     # 后台
     path('admin/', admin.site.urls),
-    # base页面
-    path('welcome/', apitest.views.welcome),
     # 主页
     path('home/', apitest.views.home),
     # 登陆页面
@@ -33,6 +31,14 @@ urlpatterns = [
     path('sug/', apitest.views.sug),
     # 帮助页面
     path('help/', apitest.views.opt_help),
+    # 项目管理页面
+    path('project_list/', apitest.views.project_list),
+    # api页面
+    re_path('^apis/(?P<pid>.*)/$', apitest.views.open_apis),
+    # case页面
+    re_path('^cases/(?P<pid>.*)/$', apitest.views.open_cases),
+    # 项目设置
+    re_path('^project_set/(?P<pid>.*)/$', apitest.views.project_set),
 
     # ==================== interface =========================
     # 登陆接口

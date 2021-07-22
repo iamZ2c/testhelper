@@ -4,35 +4,71 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from apitest.models import SugText, Project
+from icecream import ic
 
 
 # Create your views here.
 
-
-def welcome(request):
-    return render(request, template_name='home.html')
-
-
+# =====================================================页面分发器/数据构造器================================================
 # 页面分发器
 def child(request, eid, oid):
     if eid == 'home':
         return render(request, 'home.html', {"username": request.user.username})
-    elif eid == 'project_manage':
+    elif eid == 'project_list.html':
         res = child_json(eid)
-        return render(request, 'project_manage.html', res)
+        return render(request, eid, res)
+    elif eid == 'apis.html':
+        return render(request, eid, child_json(eid=eid, oid=oid))
 
 
 # 数据分发器
-def child_json(eid):
+def child_json(eid, oid=None):
     res = {}
-    if eid == 'project_manage':
+    if eid == 'project_list.html':
         data = Project.objects.all()
         res = {"projects": data}
-        print(res)
-    return res
+        return res
+    elif eid == 'apis.html':
+        data = Project.objects.filter(id=oid)
+        print(data)
+        res = {'project': data[0]}
+        return res
 
 
-# 主页需要登录++++
+# =======================================================页面返回=========================================================
+# 项目管理
+@login_required
+def project_list(request):
+    """
+    eid = project_list.html
+    """
+    return child(request, eid='project_list.html', oid=None)
+
+
+# api页面
+@login_required
+def open_apis(request, pid):
+    """
+    项目eid apis.html
+    """
+    return child(request, eid='apis.html', oid=pid)
+
+
+# case页面
+def open_cases(request, pid):
+    return render(request, 'cases.html', {
+        "pid": pid
+    })
+
+
+# 项目设置页面
+def project_set(request, pid):
+    return render(request, 'project_set.html', {
+        "pid": pid
+    })
+
+
+# 主页
 @login_required
 def home(request):
     return render(request, 'home.html', {
@@ -45,6 +81,21 @@ def login(request):
     return render(request, 'login.html')
 
 
+# 帮助页面
+@login_required
+def opt_help(request):
+    return render(request, 'opt_help.html')
+
+
+# 建议界面
+@login_required
+def sug(request):
+    return render(request, 'suggest.html', {
+        "username": request.user.username
+    })
+
+
+# ===========================================================api========================================================
 # 登陆判断方法
 def login_ac(request):
     username = request.GET['user_name']
@@ -63,6 +114,12 @@ def login_ac(request):
         return HttpResponse('login fail')
 
 
+# 退出平台
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect('/login')
+
+
 # 注册账号
 def register_ac(request):
     username = request.GET['user_name']
@@ -76,19 +133,6 @@ def register_ac(request):
         return HttpResponse('register fail')
 
 
-# 退出平台
-def logout(request):
-    auth.logout(request)
-    return HttpResponseRedirect('/login')
-
-
-@login_required
-def sug(request):
-    return render(request, 'suggest.html', {
-        "username": request.user.username
-    })
-
-
 # 获取吐槽文本
 @login_required
 def sug_ac(request):
@@ -98,17 +142,11 @@ def sug_ac(request):
     return HttpResponse('success')
 
 
-# 帮助页面
-@login_required
-def opt_help(request):
-    return render(request, 'opt_help.html')
-
-
 # 删除项目方法
 @login_required
 def del_project(request):
-    pid = request.GET['pid']
-    Project.objects.filter(pid=pid).delete()
+    pid = request.GET['id']
+    Project.objects.filter(id=pid).delete()
     return HttpResponse('')
 
 

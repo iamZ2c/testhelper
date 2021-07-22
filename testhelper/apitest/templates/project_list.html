@@ -58,13 +58,13 @@
             <tbody>
             {% for project in projects %}
                 <tr>
-                    <td>{{ project.pid }}</td>
+                    <td>{{ project.id }}</td>
                     <td>{{ project.name }}</td>
                     <td>{{ project.orther_name }}</td>
                     <td>{{ project.username }}</td>
                     <td>{{ project.mark }}</td>
                     <td>
-                        <button class="btn-success">详情</button>
+                        <button class="btn-success" onclick="javascript: document.location.href = '/apis/{{ project.id }}'" >详情</button>
                         <button class="btn-danger" onclick="del_project({{ project.id }})">删除</button>
                     </td>
                 </tr>
@@ -97,12 +97,12 @@
     document.getElementById("menu_btn").click()
 {% endblock custom_scrpit %}
 {% block text_display_scrpit %}
-    function del_project(pid) {
-    console.log(pid)
+    function del_project(id) {
+    console.log(id)
     if (confirm('确定删除项目吗？') === false){
     return
     }$.get('/del_project/', {
-    'pid': pid
+    'id': id
     }, function (ret) {
     document.location.reload()
     })
