@@ -20,7 +20,7 @@ import apitest.views
 from apitest.views import *
 
 urlpatterns = [
-    # ================== page ==============================
+    # ============================page ==============================
     # 后台
     path('admin/', admin.site.urls),
     # 主页
@@ -39,8 +39,10 @@ urlpatterns = [
     re_path('^cases/(?P<pid>.*)/$', apitest.views.open_cases),
     # 项目设置
     re_path('^project_set/(?P<pid>.*)/$', apitest.views.project_set),
+    # 加密解密页面
+    path('find_phone/', apitest.views.find_phone),
 
-    # ==================== interface =========================
+    # ============================ interface =========================
     # 登陆接口
     path('login_ac/', apitest.views.login_ac),
     # 注册跳转接口
@@ -55,4 +57,7 @@ urlpatterns = [
     path('del_project/', apitest.views.del_project),
     # 页面分发器
     re_path("^child/(?P<eid>.+)/(?P<oid>.*)/$", apitest.views.child),
+    # 加密接口
+    path('enc/', apitest.views.encrypt),
+    path('dnc/', apitest.views.decrypt),
 ]

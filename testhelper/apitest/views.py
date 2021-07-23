@@ -5,19 +5,23 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from apitest.models import SugText, Project
 from icecream import ic
+import json
+import requests
 
 
 # Create your views here.
 
 # =====================================================页面分发器/数据构造器================================================
 # 页面分发器
-def child(request, eid, oid):
+def child(request, eid, oid=None):
     if eid == 'home':
         return render(request, 'home.html', {"username": request.user.username})
     elif eid == 'project_list.html':
         res = child_json(eid)
         return render(request, eid, res)
     elif eid == 'apis.html':
+        return render(request, eid, child_json(eid=eid, oid=oid))
+    elif eid == 'jiami.html':
         return render(request, eid, child_json(eid=eid, oid=oid))
 
 
@@ -95,6 +99,11 @@ def sug(request):
     })
 
 
+# 加密解谜页面
+def find_phone(request):
+    return child(request, eid='jiami.html')
+
+
 # ===========================================================api========================================================
 # 登陆判断方法
 def login_ac(request):
@@ -158,3 +167,31 @@ def create_project(request):
     p_mark = request.GET['p_mark']
     Project.objects.create(name=p_name, mark=p_mark, username=user)
     return HttpResponse('')
+
+
+url = "https://9l80kzfc.fn-boe.bytedance.net/api/kms"
+header = {"Content-Type": "application/json"}
+
+
+# 加密
+@login_required
+def encrypt(request):
+    data = {
+        "encrypt": request.GET['text'],
+    }
+    data = json.dumps(data)
+    response = requests.post(url=url, data=data, headers=header)
+    a = response.json()['encrypt']
+    return HttpResponse(a)
+
+
+# 解密
+@login_required
+def decrypt(request):
+    data = {
+        "decrypt": request.GET['text']
+    }
+    data = json.dumps(data)
+    response = requests.post(url=url, data=data, headers=header)
+    a = response.json()['decrypt']
+    return HttpResponse(a)
