@@ -185,7 +185,7 @@ def encrypt(request):
     return HttpResponse(a)
 
 
-# 解密
+# 解密?
 @login_required
 def decrypt(request):
     data = {
