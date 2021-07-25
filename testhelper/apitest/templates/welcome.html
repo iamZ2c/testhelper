@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <link rel="icon" href="/static/src/img/center-icon-dz.png" type="image/x-icon"/>
     <title>{% block title %}{% endblock title %}</title>
@@ -42,7 +43,7 @@ background-attachment: fixed;"-->
 <nav id="navbar" class="">
 
     <ul>
-        <li><a href="/project_manage/"><!--<i class="fa fa-bank"></i>-->项目管理</a>
+        <li><a href="/project_list/"><!--<i class="fa fa-bank"></i>-->项目管理</a>
         <li><a href="#">项目列表</a></li>
         <li><a href="#">接口库</a></li>
         <li><a href="#">用例库</a></li>
@@ -52,6 +53,8 @@ background-attachment: fixed;"-->
     </ul>
 
 </nav>
+<script src="/static/bootstrap-3.4.1-dist/js/bootstrap.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/static/bootstrap-3.4.1-dist/css/bootstrap.min.css"/>
 <div id="wrapper">
     {% block content %}{% endblock content %}
 </div>
