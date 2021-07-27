@@ -9,7 +9,7 @@
 {% block content %}
 
     <h2 style="font-size: xxx-large">
-        <span style="color: white">项目管理</span>
+        <span style="color: white">项目列表</span>
     </h2>
     <br><br><br>
 
@@ -59,12 +59,13 @@
                 <tr>
                     <td>{{ project.id }}</td>
                     <td>{{ project.name }}</td>
-                    <td>{{ project.orther_name }}</td>
+                    <td>{{ project.other_user }}</td>
                     <td>{{ project.username }}</td>
                     <td>{{ project.mark }}</td>
                     <td>
-                        <button class="btn-success" onclick="javascript: document.location.href = '/apis/{{ project.id }}'" >详情</button>
-                        <button class="btn-danger" onclick="del_project({{ project.id }})">删除</button>
+                        <button class="btn btn-success" onclick="javascript: document.location.href = '/apis/{{ project.id }}'" >详情</button>
+                        <button class="btn btn-primary" onclick="javascript: document.location.href = '/project_set/{{ project.id }}'">更改</button>
+                        <button class="btn btn-danger" onclick="del_project({{ project.id }})">删除</button>
                     </td>
                 </tr>
             {% endfor %}

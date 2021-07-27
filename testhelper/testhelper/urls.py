@@ -51,13 +51,20 @@ urlpatterns = [
     path('logout/', apitest.views.logout),
     # 提交建议接口
     path('sug_ac/', apitest.views.sug_ac),
-    # 添加项目借口
+    # 添加项目接口
     path('create_project/', apitest.views.create_project),
+    # 更改项目接口
+    path('project_set_save/', apitest.views.project_set_save),
     # 删除项目接口
     path('del_project/', apitest.views.del_project),
     # 页面分发器
     re_path("^child/(?P<eid>.+)/(?P<oid>.*)/$", apitest.views.child),
     # 加密接口
     path('enc/', apitest.views.encrypt),
+    # 解密接口
     path('dnc/', apitest.views.decrypt),
+    # 保存接口备注
+    path('save_remark/', apitest.views.save_remark),
+    # 获取接口备注
+    path('get_remark/', apitest.views.get_remark),
 ]

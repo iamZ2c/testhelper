@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
-from apitest.models import SugText, Project
+from apitest.models import SugText, Project, Api
 from icecream import ic
 import json
 import requests
@@ -23,6 +23,10 @@ def child(request, eid, oid=None):
         return render(request, eid, child_json(eid=eid, oid=oid))
     elif eid == 'jiami.html':
         return render(request, eid, child_json(eid=eid, oid=oid))
+    elif eid == 'project_set.html':
+        return render(request, eid, child_json(eid, oid))
+    elif eid == 'cases.html':
+        return render(request, eid, child_json(eid, oid))
 
 
 # 数据分发器
@@ -33,6 +37,17 @@ def child_json(eid, oid=None):
         res = {"projects": data}
         return res
     elif eid == 'apis.html':
+        project = Project.objects.filter(id=oid)[0]
+        apis = Api.objects.filter(project_id=oid)
+        res = {'project': project,
+               'apis': apis,
+               }
+        return res
+    elif eid == 'project_set.html':
+        data = Project.objects.filter(id=oid)
+        res = {'project': data[0]}
+        return res
+    elif eid == 'cases.html':
         data = Project.objects.filter(id=oid)
         print(data)
         res = {'project': data[0]}
@@ -60,16 +75,19 @@ def open_apis(request, pid):
 
 # case页面
 def open_cases(request, pid):
-    return render(request, 'cases.html', {
-        "pid": pid
-    })
+    """
+    cases.html
+    """
+    return child(request, eid='cases.html', oid=pid)
 
 
 # 项目设置页面
 def project_set(request, pid):
-    return render(request, 'project_set.html', {
-        "pid": pid
-    })
+    """
+    project_set.html
+    """
+    ic(pid)
+    return child(request, eid='project_set.html', oid=pid)
 
 
 # 主页
@@ -195,3 +213,34 @@ def decrypt(request):
     response = requests.post(url=url, data=data, headers=header)
     a = response.json()['decrypt']
     return HttpResponse(a)
+
+
+# 更新项目接口
+def project_set_save(request):
+    """
+    'name': name,
+                'mark': mark,
+                'other_user': other_user,
+    """
+    pid = request.GET['pid']
+    name = request.GET['name']
+    mark = request.GET['mark']
+    other_user = request.GET['other_user']
+    Project.objects.filter(id=pid).update(name=name, mark=mark, other_user=other_user)
+    return HttpResponse('success')
+
+
+# 保存借口备注
+def save_remark(request):
+    api_id = request.GET['api_id']
+    text = request.GET['remark_text']
+    ic(api_id, text)
+    Api.objects.filter(id=api_id).update(des=text)
+    return HttpResponse('success')
+
+
+def get_remark(request):
+    api_id = request.GET['api_id']
+    res = Api.objects.filter(id=api_id)[0]
+    ic(res.des)
+    return HttpResponse(res.des)

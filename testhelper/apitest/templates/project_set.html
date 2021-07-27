@@ -1,10 +1,91 @@
+{% extends 'welcome.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    {% block title %}project_set{% endblock title %}
 </head>
 <body>
+{% block content %}
 
+    <nav class="navbar navbar-default" role="navigation"
+         style="position: absolute;top: 0px;left: 15%;width:-webkit-calc(100% - 600px);z-index: 1">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <span style="font-size: xx-small" class="navbar-brand">项目名称：{{ project.name }}</span>
+                <a class="navbar-brand" href="/project_list/">返回项目列表</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li><a href="/apis/{{ project.id }}/">接口库</a></li>
+                    <li><a href="/cases/{{ project.id }}/">用例库</a></li>
+                    <li class="active"><a href="/project_set/{{ project.id }}/">项目设置</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--  为了不被导航栏挡住  -->
+    <br><br>
+    <div style="text-align: center">
+        <h3>项目名称</h3>
+        <textarea name="" id="name" placeholder="最多100字,目前的项目名称为: {{ project.name }}" style="width: 70%"
+                  rows="8"></textarea><br>
+        <h3 style="color: white">项目描述</h3>
+        <textarea name="" id="mark" placeholder="最多500字, 当前的描述为： {{ project.mark }}" style="width: 70%"
+                  rows="8"></textarea><br>
+        <h3 style="color: white">其他管理员</h3>
+        <textarea name="" id="other_user" placeholder="多个成员间用英文逗号,来隔开。当前一起的协作者有: {{ project.other_user }}"
+                  style="width: 70%" rows="8"></textarea>
+    </div>
+
+    <button onclick="save()" type="button" style="margin-top: 2%;margin-left: 25%; width: 50%;"
+            class="btn btn-primary btn-lg btn-block">保存
+    </button>
+    <script>
+        function save() {
+            const name = document.getElementById("name").value;
+            console.log(name)
+            const mark = document.getElementById("mark").value;
+            const other_user = document.getElementById("other_user").value;
+            $.get("/project_set_save/", {
+                'pid': {{ project.id }},
+                'name': name,
+                'mark': mark,
+                'other_user': other_user,
+            },function (res){
+                if (res === 'success'){
+                    alert("更新成功")
+                    document.location.reload()
+                }
+            })
+        }
+
+    </script>
+
+
+{% endblock content %}
 </body>
+{% block custom_scrpit %}
+    document.getElementById("menu_btn").click()
+{% endblock custom_scrpit %}
+{% block custom1_scrpit %}
+    function save() {
+            const name = document.getElementById("name").value;
+            console.log(name)
+            const mark = document.getElementById("mark").value;
+            const other_user = document.getElementById("other_user").value;
+            $.get("/project_set_save/", {
+                'pid': {{ project.id }},
+                'name': name,
+                'mark': mark,
+                'other_user': other_user,
+            },function (res){
+                if (res === 'success'){
+                    alert("更新成功")
+                    document.location.reload()
+                }
+            })
+        }
+{% endblock custom1_scrpit %}
 </html>

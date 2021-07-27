@@ -9,7 +9,7 @@
 {% block content %}
 
     <nav class="navbar navbar-default" role="navigation"
-         style="position: absolute;top: 0px;left: 80px;width:-webkit-calc(100% - 200px);z-index: 1">
+         style="position: absolute;top: 0px;left: 15%;width:-webkit-calc(100% - 600px);z-index: 1">
         <div class="container-fluid">
             <div class="navbar-header">
                 <span style="font-size: xx-small" class="navbar-brand">项目名称：{{ project.name }}</span>
@@ -25,10 +25,106 @@
         </div>
     </nav>
 
+    <br><br>
+    <table class="table table-striped" style="width: 86%; margin-top: 3%">
+        <thead>
+        <tr style="background-color: lightgrey">
+            <th>id</th>
+            <th style="width: 20%">接口名称</th>
+            <th style="width: 50%">url</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for api in apis %}
+            <tr>
+                <td>{{ api.id }}</td>
+                <td>{{ api.name }}</td>
+                <td>{{ api.api_url }}</td>
+                <td>
+
+                    <button onclick="" class="btn btn-success">调试</button>
+                    <button onclick="get_remark()" class="btn btn-primary">备注</button>
+                    <button class="btn btn-primary">复制</button>
+                    <button class="btn btn-warning">异常值测试</button>
+                    <button onclick="" class="btn btn-danger">删除</button>
+                </td>
+            </tr>
+
+            </tbody>
+            </table>
+            <div style="margin-left: -12.5%;position: fixed; bottom: 0; width: 100%; text-align: center;">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary">新增接口</button>
+                    <button type="button" class="btn btn-default">全局请求头</button>
+                    <button type="button" class="btn btn-default">全局域名</button>
+                    <button type="button" class="btn btn-default">接口文档导入</button>
+                    <button type="button" class="btn btn-default">抓包导入</button>
+                    <button type="button" class="btn btn-default">加密算法</button>
+                    <button type="button" class="btn btn-default">登录态接口</button>
+                </div>
+            </div>
+
+            <div id="bz_text"
+                 style="background-color: lightgrey; width: 30%; position: fixed; left: 35%; top: 35%; display: none">
+                <textarea id="remark_text" style="width: 100%; height: 200px" placeholder="请输入该接口备注"></textarea>
+                <br>
+                <button style="margin-left: 25%;margin-right: 25%" onclick="save_remark()" class="btn btn-success">确定
+                </button>
+                <button onclick="remark_close()" class="btn btn-danger">取消</button>
+            </div>
+            <script>
+                function save_remark() {
+                    const text = document.getElementById('remark_text').value;
+                    if (text !== "") {
+                        $.get('/save_remark', {
+                            "remark_text": text,
+                            "api_id": {{ api.id }},
+                        }, function (res) {
+                            if (res === 'success') {
+                                alert("保存成功")
+                                document.location.reload()
+                            }
+                        })
+                    } else {
+                        alert("请输入备注！！")
+                    }
+
+                }
+            </script>
+            <script>
+                function get_remark() {
+
+                    $.get('/get_remark/', {
+                        "api_id": {{ api.id }}
+
+                    }, function (res) {
+                        if (res === ''){
+                            document.getElementById("remark_text").placeholder = "该api暂无备注,请输入该接口备注！";
+                            document.getElementById('bz_text').style.display = 'block';
+
+                        }else {
+                            document.getElementById("remark_text").placeholder = res
+                            document.getElementById('bz_text').style.display = 'block';
+                        }
+                    })
+                }
+            </script>
+        {% endfor %}
 
 {% endblock content %}
 </body>
 {% block custom_scrpit %}
     document.getElementById("menu_btn").click()
 {% endblock custom_scrpit %}
+{% block custom1_scrpit %}
+    function remark_open(){
+    document.getElementById('bz_text').style.display = 'block'
+    }
+{% endblock custom1_scrpit %}
+{% block custom2_scrpit %}
+    function remark_close(){
+    document.getElementById('bz_text').style.display = 'none'
+    }
+{% endblock custom2_scrpit %}
 </html>
