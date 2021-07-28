@@ -65,6 +65,141 @@
                 </div>
             </div>
 
+            <!--  调试弹层及函数  -->
+            <div id="ts"
+                 style="color: white; padding-left: 10px; border-radius: 5px; width: 80%; height: 80%; position: fixed; left: 10%; top: 10%; background-color: #3c4043; box-shadow: 4px 4px 8px grey">
+            <div class="btn-group" style="float: right">
+                <button type="button" class="btn btn-success">保存</button>
+                <button type="button" class="btn btn-default">取消</button>
+            </div>
+            <h3>API：<small></small><small></small></h3>
+
+            <ul class="nav navbar-nav" style="width: 98%">
+                <li style="margin-left: 45px">
+                    <select style="height: 40px" class="form-control">
+                        <option value="none">请求方式</option>
+                        <option value="post">POST</option>
+                        <option value="get">GET</option>
+                    </select>
+                </li>
+
+                <li style="width: -webkit-calc(100% - 330px)">
+                    <input style="padding-left: 10px; width: 100%; height: 40px" type="text"
+                           placeholder="url：如:/%s?kw=qifei" value=""/>
+                </li>
+
+                <li>
+                    <button type="button" style="width: 120px;height: 40px;" class="btn btn-primary">
+                        <span style="font-size: large">Send</span>
+                    </button>
+                </li>
+            </ul>
+            <br><br><br>
+            <ul class="nav navbar-nav" style="width: 98%">
+                <li style="margin-left: 45px;width: 83.7%">
+                    <input style="padding-left: 10px;width: 100%;height: 40px" type="text"
+                           placeholder="HOST：如 http(s)://www.baidu.com" value=""/>
+                </li>
+                <button type="button" style="height: 40px; width: 120px" class="btn btn-warning">
+                    <span style="font-size: large">Clear</span>
+                </button>
+            </ul>
+            <br><br><br>
+            <ul class="nav navbar-nav" style="width: 98%">
+                <li style="margin-left: 45px;width: 83.7%">
+                    <input style="padding-left: 10px;width: 100%;height: 40px" type="text"
+                           placeholder='HEADERS：如 {"Content": "application/json"}' value=""/>
+                </li>
+                <li>
+                    <button type="button" style="height: 40px; width: 120px" class="btn btn-warning">
+                        <span style="font-size: large">Clear</span>
+                    </button>
+                </li>
+            </ul>
+
+
+            <!--    body请求体    -->
+            <br><br><br>
+            <h3>Body：<small></small><small></small></h3>
+            <ul id="myTab" class="nav nav-tabs">
+                <li class="active"><a href="#None" data-toggle="tab">None</a></li>
+                <li><a href="#form-data" data-toggle="tab">form-data</a></li>
+                <li><a href="#x-www-form-urlencoded" data-toggle="tab">x-www-form-urlencoded</a></li>
+                <li class="dropdown">
+                    <a id="woaini" href="#" class="dropdown-toggle" data-toggle="dropdown">raw<b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                        <li><a href="#Text" tabindex="-1" data-toggle="tab">Text</a></li>
+                        <li><a href="#JavaScript" tabindex="-1" data-toggle="tab">JavaScript</a></li>
+                        <li><a href="#Json" tabindex="-1" data-toggle="tab">Json</a></li>
+                        <li><a href="#Html" tabindex="-1" data-toggle="tab">Html</a></li>
+                        <li><a href="#Xml" tabindex="-1" data-toggle="tab">Xml</a></li>
+                    </ul>
+                </li>
+                <li><a href="#Response" data-toggle="tab">Response</a></li>
+            </ul>
+            <!--row 下面的div-->
+
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade in active" id="None" style="text-align: center; color: grey">
+                    <h3>这个请求将不会携带任何请求体！</h3>
+                    <h5>This request will not carry any request-body!</h5>
+
+                </div>
+                <div class="tab-pane fade" id="form-data">
+                    <div class="table-responsive" style="width: 98%;color: black">
+                        <table class="table table-bordered table-striped" id="mytable" style="background-color:white">
+                            <thead style="color: #337ab7;font-size: x-small">
+                            <tr>
+                                <td style="width: 30%">Key</td>
+                                <td style="width: 50%">Value</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Username</td>
+                                <td>wqrf</td>
+                            </tr>
+                            <tr>
+                                <td>Password</td>
+                                <td>123456</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn btn-default" id="add"><i class="fa fa-plus"></i> 添加新参数</button>
+
+                    <script>window.jQuery || document.write('<script src="/static/js/jquery-1.11.0.min.js"><\/script>')</script>
+                    <script type="text/javascript" src="/static/js/bootstable.js"></script>
+                    <script type="text/javascript">
+                        $('#mytable').SetEditable({
+                            $addButton: $('#add'),
+                        });
+                    </script>
+                </div>
+                <div class="tab-pane fade" id="x-www-form-urlencoded">
+                    进入了x-www-form-urlencoded
+                </div>
+                <div class="tab-pane fade" id="Text">
+                    进入了Text
+                </div>
+                <div class="tab-pane fade" id="JavaScript">
+                    进入了JavaScript
+                </div>
+                <div class="tab-pane fade" id="Json">
+                    进入了Json
+                </div>
+                <div class="tab-pane fade" id="Html">
+                    进入了Html
+                </div>
+                <div class="tab-pane fade" id="Xml">
+                    进入了Xml
+                </div>
+                <div class="tab-pane fade" id="Response">
+                    进入了Response
+                </div>
+            </div>
+
+
             <div id="bz_text"
                  style="background-color: lightgrey; width: 30%; position: fixed; left: 35%; top: 35%; display: none">
                 <textarea id="remark_text" style="width: 100%; height: 200px" placeholder="请输入该接口备注"></textarea>
@@ -99,11 +234,11 @@
                         "api_id": {{ api.id }}
 
                     }, function (res) {
-                        if (res === ''){
+                        if (res === '') {
                             document.getElementById("remark_text").placeholder = "该api暂无备注,请输入该接口备注！";
                             document.getElementById('bz_text').style.display = 'block';
 
-                        }else {
+                        } else {
                             document.getElementById("remark_text").placeholder = res
                             document.getElementById('bz_text').style.display = 'block';
                         }
@@ -113,6 +248,7 @@
         {% endfor %}
 
 {% endblock content %}
+</div>
 </body>
 {% block custom_scrpit %}
     document.getElementById("menu_btn").click()
