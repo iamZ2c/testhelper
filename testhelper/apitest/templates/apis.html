@@ -178,26 +178,68 @@
                 </div>
                 <div class="tab-pane fade" id="x-www-form-urlencoded">
                     进入了x-www-form-urlencoded
+                    <div class="table-responsive" style="width: 98%;color: black">
+                        <table class="table table-bordered table-striped" id="mytable2" style="background-color:white">
+                            <thead style="color: #337ab7;font-size: x-small">
+                            <tr>
+                                <td style="width: 30%">Key</td>
+                                <td style="width: 50%">Value</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Username</td>
+                                <td>wqrf</td>
+                            </tr>
+                            <tr>
+                                <td>Password</td>
+                                <td>123456</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn btn-default" id="add2"><i class="fa fa-plus"></i> 添加新参数</button>
+
+                    <script>window.jQuery || document.write('<script src="/static/js/jquery-1.11.0.min.js"><\/script>')</script>
+                    <script type="text/javascript" src="/static/js/bootstable.js"></script>
+                    <script type="text/javascript">
+                        $('#mytable2').SetEditable({
+                            $addButton: $('#add2'),
+                        });
+                    </script>
                 </div>
                 <div class="tab-pane fade" id="Text">
-                    进入了Text
+                    <textarea placeholder="进入了Text" name="" id=""
+                              style="color: black; width: 98%; height: 300px"></textarea>
                 </div>
                 <div class="tab-pane fade" id="JavaScript">
-                    进入了JavaScript
+                    <textarea placeholder="进入了JavaScript" name="" id=""
+                              style="color: black; width: 98%; height: 300px"></textarea>
+
                 </div>
                 <div class="tab-pane fade" id="Json">
-                    进入了Json
+                    <textarea placeholder="进入了Json" name="" id=""
+                              style="color: black; width: 98%; height: 300px"></textarea>
+
                 </div>
                 <div class="tab-pane fade" id="Html">
-                    进入了Html
+                    <textarea placeholder="进入了Html" name="" id=""
+                              style="color: black; width: 98%; height: 300px"></textarea>
                 </div>
                 <div class="tab-pane fade" id="Xml">
-                    进入了Xml
+                    <textarea placeholder="进入了Xml" name="" id=""
+                              style="color: black; width: 98%; height: 300px"></textarea>
+
                 </div>
                 <div class="tab-pane fade" id="Response">
+
+                    <textarea name="" id="6" disabled="disabled"
+                              style="color: black; width: 98%; height: 300px"></textarea>
+                    <br>
                     进入了Response
                 </div>
             </div>
+
 
 
             <div id="bz_text"
