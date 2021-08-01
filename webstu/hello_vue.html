@@ -6,15 +6,33 @@
 </head>
 <body>
 <div id="app">
-    {{message}}
+
+    <ul>
+
+    </ul>
+    <span>
+        {{counter}}
+    </span>
+    <button v-on:click="add">+</button>
+    <button v-on:click="sub">-</button>
 </div>
 <script src="../js/vue.js"></script>
 <script>
     const app = new Vue({
         el: "#app",
         data: {
-            message: '你好呀vue'
+            counter: 0
         },
+        methods: {
+            add: function () {
+                console.log("add执行");
+                this.counter++
+            },
+            sub: function () {
+                console.log("sub执行")
+                this.counter--
+            }
+        }
     })
 </script>
 </body>
