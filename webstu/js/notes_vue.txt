@@ -1,0 +1,23 @@
+
+
+v - bind:{k:v,K:v}
+v - bind:[0,1,0]
+可以跟对象也可以跟列表
+
+vue 没有加""的都当成变量解释
+
+计算属性
+computed 和 method 区别在于 computed多次使用 只调用一次函数,有缓存效率更高.
+
+类似于python 方法
+computed:{
+            countAge: function () {
+                let count = 0
+                for (let movie of this.movies){
+                    count += movie.age
+                }
+            return count
+            }
+        },
+computed里面有set和get方法
+取值调用get,重新赋值调用set
