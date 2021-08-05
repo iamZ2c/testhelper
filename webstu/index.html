@@ -6,8 +6,8 @@
 </head>
 
 <body>
-<div id="app" >
-    <input v-model="message">
+<div id="app">
+    <input v-model.lazy="message">
     {{message}}
     <table>
         <thead>
@@ -21,7 +21,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr   v-for="(book,index) in books" :style="{display: book.is_display}">
+        <tr v-for="(book,index) in books" :style="{display: book.is_display}">
             <td style="text-align: center">{{index}}</td>
             <td style="text-align: center">{{book.name}}</td>
             <td style="text-align: center">{{book.data}}</td>
@@ -34,9 +34,52 @@
             <td>
                 <button @click="remove2(index)">移除</button>
             </td>
+
         </tr>
         </tbody>
     </table>
+    <td>
+        <input type="radio" value="男" v-model="what_fuck">男
+
+    </td>
+    <td>
+        <input type="radio" value="女" v-model="what_fuck">女
+
+    </td>
+    当前选择是{{what_fuck}}
+    <br>
+    <label for="agree">
+        <input type="checkbox" id="agree" v-model="is_agree">是否同意协议
+    </label>
+    当前的同意协议状态 {{is_agree}}
+    <button :disabled="!is_agree">下一步</button>
+    <br>
+        <input type="checkbox" value="篮球" v-model="hobbies">篮球
+        <input type="checkbox" value="足球" v-model="hobbies">足球
+        <input type="checkbox" value="羽毛球" v-model="hobbies">羽毛球
+        <input type="checkbox" value="橄榄球" v-model="hobbies">橄榄球R
+        {{hobbies}}
+    <br>
+    <select v-model="fruit">
+        <option>苹果</option>
+        <option>栗子</option>
+        <option>榴莲</option>
+        <option>香蕉</option>
+    </select>
+    {{fruit}}
+    <select v-model="fruits" multiple>
+        <option>苹果</option>
+        <option>栗子</option>
+        <option>榴莲</option>
+        <option>香蕉</option>
+    </select>
+    {{fruits}}
+    <br>
+    <label v-for="item in fruitxx">
+        <input type="checkbox" v-model="xxyy" :value="item">{{item}}
+    </label>
+    {{xxyy}}
+
 </div>
 <script src="js/vue.js"></script>
 <script src="main.js"></script>
