@@ -65,9 +65,24 @@
                 </div>
             </div>
 
-            <!--  调试弹层及函数  -->
+            <--!接口备注提示框-->
+            <div id="bz_text"
+                 style="display: none; background-color: lightgrey; width: 30%; position: fixed; left: 35%; top: 35%;">
+                <textarea id="remark_text" style="width: 100%; height: 200px" placeholder="请输入该接口备注"></textarea>
+                <br>
+                <button style="margin-left: 25%;margin-right: 25%" onclick="save_remark()" class="btn btn-success">确定
+                </button>
+                <button onclick="remark_close()" class="btn btn-danger">取消</button>
+            </div>
+
+
+
+
+
+
+            <!--  api详情调试弹层及函数  -->
             <div id="ts"
-                 style="color: white; padding-left: 10px; border-radius: 5px; width: 80%; height: 80%; position: fixed; left: 10%; top: 10%; background-color: #3c4043; box-shadow: 4px 4px 8px grey">
+                 style="display: none; color: white; padding-left: 10px; border-radius: 5px; width: 80%; height: 80%; position: fixed; left: 10%; top: 10%; background-color: #3c4043; box-shadow: 4px 4px 8px grey">
             <div class="btn-group" style="float: right">
                 <button type="button" class="btn btn-success">保存</button>
                 <button type="button" class="btn btn-default">取消</button>
@@ -242,14 +257,6 @@
 
 
 
-            <div id="bz_text"
-                 style="background-color: lightgrey; width: 30%; position: fixed; left: 35%; top: 35%; display: none">
-                <textarea id="remark_text" style="width: 100%; height: 200px" placeholder="请输入该接口备注"></textarea>
-                <br>
-                <button style="margin-left: 25%;margin-right: 25%" onclick="save_remark()" class="btn btn-success">确定
-                </button>
-                <button onclick="remark_close()" class="btn btn-danger">取消</button>
-            </div>
             <script>
                 function save_remark() {
                     const text = document.getElementById('remark_text').value;
@@ -305,4 +312,5 @@
     document.getElementById('bz_text').style.display = 'none'
     }
 {% endblock custom2_scrpit %}
+
 </html>
