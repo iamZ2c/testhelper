@@ -6,14 +6,16 @@
 </head>
 <script src="js/vue.js"></script>
 <template id="root">
-    <div>{{dnum2}}-{{dnum1}}
-        <input type="text" v-model="dnum1">
-        <input type="text" v-model="dnum2">
+    <div>dnumps: {{dnum2}}-{{dnum1}}
+        cnum:{{cnum1}}-{{cnum2}}
+        <input type="text" :value="dnum1" @input="changenum1($event.target.value)">
+        <input type="text" :value="dnum2" @input="changenum2($event.target.value)">
     </div>
 </template>
 
 <div id="app">
-    <cpn :cnum1="num1" :cnum2="num2"></cpn>
+    num: {{num1}}--{{num2}}
+    <cpn :cnum1="num1" :cnum2="num2" @c1="cc1" @c2="cc2"></cpn>
 </div>
 <script>
     const cpn = Vue.component('cpn', {
@@ -31,6 +33,17 @@
                 dnum1: this.cnum1,
                 dnum2: this.cnum2,
             }
+        },
+        methods:{
+            changenum1(value){
+                this.dnum1 = value;
+                this.$emit('c1',value)
+            },
+
+            changenum2(value){
+                this.dnum2 = value;
+                this.$emit('c2',value)
+            }
         }
     })
 
@@ -43,6 +56,14 @@
             num1: 1,
             num2: 2,
         },
+        methods: {
+            cc1(value){
+                this.num1= value
+            },
+            cc2(value){
+                this.num2= value
+            },
+        }
     })
 </script>
 <body>
