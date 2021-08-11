@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="js/vue.js"></script>
+<template id="root">
+    <div>{{dnum2}}-{{dnum1}}
+        <input type="text" v-model="dnum1">
+        <input type="text" v-model="dnum2">
+    </div>
+</template>
+
+<div id="app">
+    <cpn :cnum1="num1" :cnum2="num2"></cpn>
+</div>
+<script>
+    const cpn = Vue.component('cpn', {
+        template: '#root',
+        props: {
+            cnum1: {
+                type: Number
+            },
+            cnum2: {
+                type: Number
+            },
+        },
+        data() {
+            return {
+                dnum1: this.cnum1,
+                dnum2: this.cnum2,
+            }
+        }
+    })
+
+    new Vue({
+        el: "#app",
+        components: {
+            cpn
+        },
+        data: {
+            num1: 1,
+            num2: 2,
+        },
+    })
+</script>
+<body>
+
+</body>
+</html>

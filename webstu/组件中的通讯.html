@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="js/vue.js"></script>
+<template id="root">
+    <div>
+        在root下面注册的组件
+        <son></son>
+        <ul v-for="item in cquery">
+            <li>{{item}}</li>
+        </ul>
+        {{cMessage}},{{cquery}}
+    </div>
+
+</template>
+<style>
+    .class {
+        color: cyan;
+    }
+</style>
+<div id="app">
+    <input type="text" @keyup.enter="pt">
+    <input type="text" v-model.lazy="talk">
+    {{talk}}
+    <father :c-message="message" :cquery="query"></father>
+    <div :class="{class: display}" @click="display=!display">wowow</div>
+</div>
+<script>
+    const father = {
+        template: '#root',
+        props: {
+            cMessage:{
+                type: String,
+                default: '默认str'
+            },
+            cquery:{
+                type: Array,
+            }
+        },
+        components: {
+            son: {
+                template: '<div>这个是son组件</div>'
+            }
+        }
+    }
+    new Vue({
+            el: "#app",
+            data: {
+                talk:'',
+                display: true,
+                message: 122222222,
+                query: ['a', 'b', 'c'],
+            },
+            components: {
+                father: father //增强写法直接 father
+            },
+            methods:{
+                pt(){
+                    console.log(111)
+                }
+            }
+        }
+    )
+</script>
+</body>
+</html>

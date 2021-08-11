@@ -1,6 +1,7 @@
 const b = new Vue({
     el: '#app',
     data: {
+        number_test:0,
         xxyy:[],
         fruit:'',
         fruits:[],
