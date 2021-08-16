@@ -67,4 +67,6 @@ urlpatterns = [
     path('save_remark/', apitest.views.save_remark),
     # 获取接口备注
     path('get_remark/', apitest.views.get_remark),
+    # 获取当前时间
+    path('get_localtime/', apitest.views.get_localtime),
 ]

@@ -5,6 +5,10 @@
     <title>Title</title>
 </head>
 <script src="js/vue.js"></script>
+<div id="app">
+    num: {{num1}}--{{num2}}
+    <cpn :cnum1="num1" :cnum2="num2" @c1="cc1" @c2="cc2"></cpn>
+</div>
 <template id="root">
     <div>dnumps: {{dnum2}}-{{dnum1}}
         cnum:{{cnum1}}-{{cnum2}}
@@ -13,10 +17,6 @@
     </div>
 </template>
 
-<div id="app">
-    num: {{num1}}--{{num2}}
-    <cpn :cnum1="num1" :cnum2="num2" @c1="cc1" @c2="cc2"></cpn>
-</div>
 <script>
     const cpn = Vue.component('cpn', {
         template: '#root',
@@ -66,6 +66,7 @@
         }
     })
 </script>
+
 <body>
 
 </body>

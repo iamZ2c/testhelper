@@ -9,7 +9,7 @@
 {% block content %}
 
     <nav class="navbar navbar-default" role="navigation"
-         style="position: absolute;top: 0px;left: 15%;width:-webkit-calc(100% - 600px);z-index: 1">
+         style="position: absolute;top: 0;left: 15%;width:-webkit-calc(100% - 600px);z-index: 1">
         <div class="container-fluid">
             <div class="navbar-header">
                 <span style="font-size: xx-small" class="navbar-brand">项目名称：{{ project.name }}</span>
@@ -82,16 +82,16 @@
 
             <!--  api详情调试弹层及函数  -->
             <div id="ts"
-                 style="display: none; color: white; padding-left: 10px; border-radius: 5px; width: 80%; height: 80%; position: fixed; left: 10%; top: 10%; background-color: #3c4043; box-shadow: 4px 4px 8px grey">
+                 style="display: block; color: white; padding-left: 10px; border-radius: 5px; width: 80%; height: 80%; position: fixed; left: 10%; top: 10%; background-color: #3c4043; box-shadow: 4px 4px 8px grey">
             <div class="btn-group" style="float: right">
-                <button type="button" class="btn btn-success">保存</button>
-                <button type="button" class="btn btn-default">取消</button>
+                <button type="button" class="btn btn-success" onclick="save_tc()">保存</button>
+                <button type="button" class="btn btn-default" onclick="close_tc()">取消</button>
             </div>
             <h3>API：<small></small><small></small></h3>
 
             <ul class="nav navbar-nav" style="width: 98%">
                 <li style="margin-left: 45px">
-                    <select style="height: 40px" class="form-control">
+                    <select id="tc_method" style="height: 40px" class="form-control">
                         <option value="none">请求方式</option>
                         <option value="post">POST</option>
                         <option value="get">GET</option>
@@ -99,7 +99,7 @@
                 </li>
 
                 <li style="width: -webkit-calc(100% - 330px)">
-                    <input style="padding-left: 10px; width: 100%; height: 40px" type="text"
+                    <input id="tc_url" style="color: black; padding-left: 10px; width: 100%; height: 40px" type="text"
                            placeholder="url：如:/%s?kw=qifei" value=""/>
                 </li>
 
@@ -112,7 +112,7 @@
             <br><br><br>
             <ul class="nav navbar-nav" style="width: 98%">
                 <li style="margin-left: 45px;width: 83.7%">
-                    <input style="padding-left: 10px;width: 100%;height: 40px" type="text"
+                    <input id="tc_host" style="color: black; padding-left: 10px;width: 100%;height: 40px" type="text"
                            placeholder="HOST：如 http(s)://www.baidu.com" value=""/>
                 </li>
                 <button type="button" style="height: 40px; width: 120px" class="btn btn-warning">
@@ -122,7 +122,7 @@
             <br><br><br>
             <ul class="nav navbar-nav" style="width: 98%">
                 <li style="margin-left: 45px;width: 83.7%">
-                    <input style="padding-left: 10px;width: 100%;height: 40px" type="text"
+                    <input id="tc_header" style="color: black; padding-left: 10px;width: 100%;height: 40px" type="text"
                            placeholder='HEADERS：如 {"Content": "application/json"}' value=""/>
                 </li>
                 <li>
@@ -142,7 +142,7 @@
                 <li><a href="#x-www-form-urlencoded" data-toggle="tab">x-www-form-urlencoded</a></li>
                 <li class="dropdown">
                     <a id="woaini" href="#" class="dropdown-toggle" data-toggle="dropdown">raw<b class="caret"></b></a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                    <ul id='test_id' class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
                         <li><a href="#Text" tabindex="-1" data-toggle="tab">Text</a></li>
                         <li><a href="#JavaScript" tabindex="-1" data-toggle="tab">JavaScript</a></li>
                         <li><a href="#Json" tabindex="-1" data-toggle="tab">Json</a></li>
@@ -306,8 +306,24 @@
     function remark_open(){
     document.getElementById('bz_text').style.display = 'block'
     }
+    function close_tc(){
+
+    const method = document.getElementById('tc_method').value
+    const url = document.getElementById('tc_url').value
+    const header = document.getElementById('tc_header').value
+    const host = document.getElementById('tc_host').value
+    const tc_body_method = $('ul#myTab li[class="active"]')[0].innerText
+
+    if (ts_body_method === 'none') {
+    const ts_api_body = '';
+    }
+    }
+    function save_tc(){
+    document.getElementById('ts').style.display = 'none'
+    }
 {% endblock custom1_scrpit %}
 {% block custom2_scrpit %}
+
     function remark_close(){
     document.getElementById('bz_text').style.display = 'none'
     }

@@ -7,6 +7,7 @@ from apitest.models import SugText, Project, Api
 from icecream import ic
 import json
 import requests
+import time
 
 
 # Create your views here.
@@ -239,8 +240,20 @@ def save_remark(request):
     return HttpResponse('success')
 
 
+# 获取备注
 def get_remark(request):
     api_id = request.GET['api_id']
     res = Api.objects.filter(id=api_id)[0]
     ic(res.des)
     return HttpResponse(res.des)
+
+
+# 返回dang qian
+def get_localtime(request):
+    ts = request.GET['time_stamp']
+    if ts != '':
+        local_time = time.localtime(int(ts))
+        local_time = time.strftime("%Y-%m-%d %H:%M:%S", local_time)
+        return HttpResponse(local_time)
+    else:
+        return HttpResponse('erro')

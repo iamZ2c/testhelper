@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<template id="tem1">
+    <div>
+        <input type="text" :value="dmessage1" @input="em($event.target.value)">
+        cm1-{{cmessage1}}
+        <br>
+        cm2-{{cmessage2}}
+        <br>
+        cm3-{{cmessage3}}
+    </div>
+</template>
+<body>
+<div id="app">
+    <child1 @c1="c1" :cmessage1="message1" :cmessage2="message2" :cmessage3="message3"></child1>
+</div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+
+    const child1 = Vue.component('child1',{
+        template:'#tem1',
+        props:{
+            cmessage1:String,
+            cmessage2:String,
+            cmessage3:String,
+        },
+        data(){
+            return {
+                dmessage1: this.cmessage1,
+                dmessage2: this.cmessage2,
+                dmessage3: this.cmessage3,
+            }
+        },
+        methods: {
+            em(val){
+                this.dmessage1=val
+                this.$emit('c1',val)
+            },
+        }
+
+    })
+
+
+    new Vue({
+        el:'#app',
+        data:{
+            message1:'11111',
+            message2:'22222',
+            message3:'33333',
+        },
+        component:{
+            child1
+        },
+        methods:{
+            c1(val){
+                console.log(val)
+                this.message1=val
+            }
+        }
+    })
+</script>
+
+</html>
