@@ -293,6 +293,49 @@
                         }
                     })
                 }
+
+
+                //===============================================================
+                function close_tc() {
+
+                    const method = document.getElementById('tc_method').value
+                    const url = document.getElementById('tc_url').value
+                    const header = document.getElementById('tc_header').value
+                    const host = document.getElementById('tc_host').value
+                    const tc_body_method = $('ul#myTab li[class="active"]')[0].innerText
+                    alert(tc_body_method)
+                    if (tc_body_method === 'none') {
+                        const tc_api_body = '';
+                    }
+                    // form-data
+                    if (tc_body_method === 'form-data') {
+                        const ts_api_body = [];  //新建空列表，存放后续数据
+                        const tbody_ = $("table#mytable tbody")[0];  //获取该表格的内容部分
+                        const trlist = tbody_.children;  //获取下面所有tr，每个tr实际上就是一个键值对
+                        for (let i = 0; i < trlist.length; i++) {
+                            const tdarr = trlist[i].children;  // 获取tr下的俩个td
+                            const key = tdarr[0].innerText;  // 获取key
+                            const value = tdarr[1].innerText;  // 获取value
+                            ts_api_body.push([key, value]);  // 作为一个数组，存放到这个大数组里。
+                        }
+                        console.log(ts_api_body)
+                    }
+
+                    // x-www-form-urlencoded
+                    if (tc_body_method === 'x-www-form-urlencoded') {
+                        const ts_api_body = [];  //新建空列表，存放后续数据
+                        const tbody_ = $("table#mytable2 tbody")[0];  //获取该表格的内容部分
+                        const trlist = tbody_.children;  //获取下面所有tr，每个tr实际上就是一个键值对
+                        for (let i = 0; i < trlist.length; i++) {
+                            const tdarr = trlist[i].children;  // 获取tr下的俩个td
+                            const key = tdarr[0].innerText;  // 获取key
+                            const value = tdarr[1].innerText;  // 获取value
+                            ts_api_body.push([key, value]);  // 作为一个数组，存放到这个大数组里。
+                        }
+                        console.log(ts_api_body)
+                    }
+
+                }
             </script>
         {% endfor %}
 
@@ -313,10 +356,40 @@
     const header = document.getElementById('tc_header').value
     const host = document.getElementById('tc_host').value
     const tc_body_method = $('ul#myTab li[class="active"]')[0].innerText
-
-    if (ts_body_method === 'none') {
-    const ts_api_body = '';
+    alert(tc_body_method)
+    if (tc_body_method === 'none') {
+    const tc_api_body = '';
     }
+    // form-data
+    if(tc_body_method === 'form-data'){
+    const ts_api_body = [];  //新建空列表，存放后续数据
+    const tbody_ = $("table#mytable tbody")[0];  //获取该表格的内容部分
+    const trlist = tbody_.children ;  //获取下面所有tr，每个tr实际上就是一个键值对
+    for(let i=0; i
+    <trlist.length; i++) {
+    const tdarr = trlist[i].children;  // 获取tr下的俩个td
+    const key = tdarr[0].innerText;  // 获取key
+    const value = tdarr[1].innerText;  // 获取value
+    ts_api_body.push([key, value]);  // 作为一个数组，存放到这个大数组里。
+    }
+    console.log(ts_api_body)
+    }
+
+    // x-www-form-urlencoded
+    if(tc_body_method === 'x-www-form-urlencoded'){
+    const ts_api_body = [];  //新建空列表，存放后续数据
+    const tbody_ = $("table#mytable2 tbody")[0];  //获取该表格的内容部分
+    const trlist = tbody_.children ;  //获取下面所有tr，每个tr实际上就是一个键值对
+    for(let i=0; i
+    <trlist.length; i++) {
+    const tdarr = trlist[i].children;  // 获取tr下的俩个td
+    const key = tdarr[0].innerText;  // 获取key
+    const value = tdarr[1].innerText;  // 获取value
+    ts_api_body.push([key, value]);  // 作为一个数组，存放到这个大数组里。
+    }
+    console.log(ts_api_body)
+    }
+
     }
     function save_tc(){
     document.getElementById('ts').style.display = 'none'
@@ -328,5 +401,4 @@
     document.getElementById('bz_text').style.display = 'none'
     }
 {% endblock custom2_scrpit %}
-
 </html>
