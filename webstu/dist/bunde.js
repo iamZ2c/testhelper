@@ -293,16 +293,25 @@ var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
+var _App = __webpack_require__(7);
+
+var _App2 = _interopRequireDefault(_App);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-__webpack_require__(7);
+__webpack_require__(8);
+
 
 console.log(_main.b);
 
-var app = new _vue2.default({
+//拆分出来
+
+
+new _vue2.default({
     el: '#app',
-    data: {
-        message: "hello webpack"
+    template: '<app></app>',
+    components: {
+        App: _App2.default
     }
 });
 
@@ -12637,8 +12646,33 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
 
-var content = __webpack_require__(8);
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    template: '<div><button @click="cil()">按钮</button>{{message}}</div>',
+    data: function data() {
+        return {
+            message: "hello webpack"
+        };
+    },
+
+    methods: {
+        cil: function cil() {
+            this.message = 'hello web';
+        }
+    }
+};
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(9);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -12652,13 +12686,13 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(12)(content, options);
+var update = __webpack_require__(13)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
 if(false) {
-	module.hot.accept("!!../node_modules/css-loader/dist/cjs.js!./normal.css", function() {
-		var newContent = require("!!../node_modules/css-loader/dist/cjs.js!./normal.css");
+	module.hot.accept("!!../../node_modules/css-loader/dist/cjs.js!./normal.css", function() {
+		var newContent = require("!!../../node_modules/css-loader/dist/cjs.js!./normal.css");
 
 		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 
@@ -12684,13 +12718,13 @@ if(false) {
 }
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(9)(false);
+exports = module.exports = __webpack_require__(10)(false);
 // Imports
-var urlEscape = __webpack_require__(10);
-var ___CSS_LOADER_URL___0___ = urlEscape(__webpack_require__(11));
+var urlEscape = __webpack_require__(11);
+var ___CSS_LOADER_URL___0___ = urlEscape(__webpack_require__(12));
 
 // Module
 exports.push([module.i, "body {\n    background: url(" + ___CSS_LOADER_URL___0___ + ");\n}", ""]);
@@ -12698,7 +12732,7 @@ exports.push([module.i, "body {\n    background: url(" + ___CSS_LOADER_URL___0__
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12789,7 +12823,7 @@ function toComment(sourceMap) {
 }
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12815,13 +12849,13 @@ module.exports = function escape(url, needQuotes) {
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "img/img.0b589726.jpg";
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -12890,7 +12924,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(13);
+var	fixUrls = __webpack_require__(14);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -13227,7 +13261,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 

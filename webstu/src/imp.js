@@ -1,14 +1,18 @@
-require('../css/normal.css')
+require('./css/normal.css')
 import {b} from './main.js'
+
 console.log(b)
 
 import Vue from "vue";
+import App from "./vue/App"
+//拆分出来
 
 
 
 new Vue({
     el: '#app',
-    data:{
-        message: "hello webpack"
+    template: '<app></app>',
+    components:{
+        App
     }
 })
