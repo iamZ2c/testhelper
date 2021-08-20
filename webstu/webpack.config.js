@@ -14,7 +14,7 @@ module.exports = {
         }
     },
     // css-loader负责把css文件进行加载
-    // style-loader负责把样式添加dom里面
+    // style-loader·负责把样式添加dom里面
     // loader是从右往左读取的
     module: {
         rules: [
