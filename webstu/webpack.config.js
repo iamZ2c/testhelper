@@ -1,4 +1,6 @@
 const path = require('path')
+const webpack = require('webpack')
+
 module.exports = {
     entry: './src/imp.js',
     output: {
@@ -7,7 +9,10 @@ module.exports = {
         // 解决file-loader，打包打在dist文件里，无法加载路径的问题。
         publicPath: 'dist/',
     },
+    //resolve一般解决路径问题
     resolve:{
+        // 解决后缀名称不用写后缀也可以知道到指定文件
+        // extensions:['.vue'],
         // alias:别名,給需要使用的vue文件取个别名。
         alias:{
             'vue$': 'vue/dist/vue.esm.js'
@@ -46,6 +51,16 @@ module.exports = {
                     }
                 }
             },
+            {
+                test: /\.vue$/,
+                use:{
+                    loader: 'vue-loader'
+                }
+            },
         ],
     },
+    //插件配置
+    plugins: [
+        new webpack.BannerPlugin('Mr.zhang have the code')
+    ]
 }

@@ -1,4 +1,4 @@
-
+git config --global http.sslVerify "false"
 
 v - bind:{k:v,K:v}
 v - bind:[0,1,0]
