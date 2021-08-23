@@ -17,3 +17,6 @@ new Vue({
         App
     }
 })
+
+document.writeln('<button>我是按钮</button>')
+document.writeln('<button>我也是按钮</button>')
