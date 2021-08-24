@@ -69,6 +69,7 @@ module.exports = {
         }),
         new UglifyjsWebpackPlugin()
     ],
+    // npm自动起的服务 contentbase 是监控的位置
     devServer: {
         contentBase: './dist',
         inline: true
