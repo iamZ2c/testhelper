@@ -1,6 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webApack-plugin')
 const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {

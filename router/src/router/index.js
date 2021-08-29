@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const HomeMessage = () => import("../components/HomeMessage")
-const HomeNews = () => import("../components/HomeNews")
-const Home = () => import('../components/Home')
-const User = () => import("../components/User")
-const About = () => import("../components/About")
-const Profile = () => import("../components/Profile")
+const HomeMessage = () => import("../components/stucpn/HomeMessage")
+const HomeNews = () => import("../components/stucpn/HomeNews")
+const Home = () => import('../components/stucpn/Home')
+const User = () => import("../components/stucpn/User")
+const About = () => import("../components/stucpn/About")
+const Profile = () => import("../components/stucpn/Profile")
 // 通过此方法安装插件必须的 实际上执行了 Router.install
 Vue.use(Router)
 

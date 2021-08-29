@@ -4,6 +4,7 @@ body {
 }
 
 #tab-bar{
+  /*延展*/
   display: flex;
   /*box-shadow: 0, -1,0*/
   background-color: #f6f6f6;
@@ -16,7 +17,15 @@ body {
 }
 
 .tab-item {
+  font-size: 10px;
   flex: 1;
   text-align: center;
   height: 49px;
+}
+
+.tab-item img {
+  height: 25px;
+  width: 25px;
+  /*去掉图片下面的间距*/
+  vertical-align: middle;
 }
