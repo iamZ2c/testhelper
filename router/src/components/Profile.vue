@@ -8,7 +8,13 @@
 
 <script>
 export default {
-  name: "Profile"
+  name: "Profile",
+  created() {
+    console.log("profile create");
+  },
+  destroyed() {
+    console.log("profile destory");
+  }
 }
 </script>
 

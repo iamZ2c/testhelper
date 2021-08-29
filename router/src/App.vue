@@ -7,7 +7,12 @@
     <router-link :to="'/user/'+userId" tag="button" replace>user</router-link>
 <!--    <router-link :to="{path:'/profile', query:{name:'lisi',height:'188'}}" tag="button">profile</router-link>-->
     <button @click="profileClk">profile</button>
-    <router-view></router-view>
+
+    <keep-alive exclude="Profile">
+      <router-view></router-view>
+    </keep-alive>
+
+
   </div>
 </template>
 

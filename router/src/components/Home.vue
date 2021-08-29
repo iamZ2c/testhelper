@@ -10,7 +10,26 @@
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
+  data() {
+    return {
+      path: '/home/message'
+    }
+  },
+  created() {
+    console.log("create");
+  },
+  destroyed() {
+    console.log("destroy");
+  },
+  beforeRouteLeave(to ,from ,next) {
+    console.log(this.$route.path);
+    this.path = this.$route.path
+    next()
+  },
+  activated() {
+    this.$router.replace(this.path)
+  }
 }
 </script>
 
