@@ -73,7 +73,6 @@ def crawl_data(str1):
     code = re.compile('用代码为(.*?)，')
     legal_person_name = re.compile('<span class="name"><a href=".*?">(.*?)</a>')
 
-
     try:
         var = {"company_name": re.search(company_name_re_pa, str1).group(1),
                "code": re.search(code, str1).group(1),
@@ -85,7 +84,7 @@ def crawl_data(str1):
     return data_list
 
 
-if __name__ == '__main__':
+def run_crawl_qcc():
     url_list1 = make_page(qcc_url, 40)
     start_time = time.time()
     tasks = [asyncio.ensure_future(get_detail_link(url)) for url in url_list1]
@@ -99,9 +98,10 @@ if __name__ == '__main__':
     data_list = []
     for i in tasks:
         data_list += crawl_data(i.result())
-    print(data_list)
     end_time = time.time()
-    print(end_time - start_time)
-    print(len(data_list))
 
-
+    return {
+        "data": data_list,
+        "time": end_time - start_time,
+        "len": data_list.__len__()
+    }
