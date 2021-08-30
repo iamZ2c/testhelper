@@ -1,8 +1,8 @@
 <template>
   <div class="tab-item" @click="on_clk">
-    <slot v-if="!active" name="bar-icon"></slot>
+    <slot v-if="!isActive" name="bar-icon"></slot>
     <slot v-else name="bar-icon-active"></slot>
-    <div :class="{'bar-text': active}">
+    <div :style="text_color_style">
       <slot name="bar-text"></slot>
     </div>
   </div>
@@ -16,8 +16,21 @@ export default {
       active: true
     }
   },
+  computed: {
+    isActive(){
+      // 那个路由被激活了,$route就是那个路由
+      return this.$route.path.indexOf(this.path) !== -1;
+    },
+    text_color_style() {
+     return this.isActive ? {color: this.text_color} : {}
+    }
+  },
   props:{
-    path:String
+    path:String,
+    text_color:{
+      type: String,
+      default: "red"
+    }
   },
   methods:{
     on_clk(){

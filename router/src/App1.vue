@@ -2,9 +2,8 @@
   <div id="app1">
 
     <router-view></router-view>
-
     <tab-bar>
-      <bar-item path="/home">
+      <bar-item path="/home" text_color="red">
         <img slot="bar-icon" src="./assets/img/footer01.png" alt="">
         <img slot="bar-icon-active" src="./assets/img/footer001.png" alt="">
         <div slot="bar-text">首页</div>
