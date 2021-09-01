@@ -20,7 +20,8 @@ const store = new Vuex.Store(
           name:'zhangsan3',
           age: 14
         },
-      ]
+      ],
+      info:{name:'zhangsan',age:13}
     },
     mutations:{
       increment(state) {
@@ -32,9 +33,21 @@ const store = new Vuex.Store(
       addCount(state, payload) {
         state.counter += payload.count
       },
-      addStu:state => state.students.push({name: "lilei", age:11})
+      addStu:state => state.students.push({name: "lilei", age:11}),
+      addInfo:state => state.info['addr'] = 'beij',
+
+
     },
     actions:{
+      asyLog(context, payload){
+        return new Promise( (resolve, reject) => {
+          setTimeout(()=>{
+            context.commit('addStu')
+            resolve('123123')
+          },2000)
+
+        })
+      }
     },
     getters:{
       filterAge(state) {

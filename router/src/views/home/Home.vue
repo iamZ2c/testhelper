@@ -6,6 +6,11 @@
     {{$store.state.counter}}<br>
     <button @click="addCount(10000)">+n</button>
     <button @click="addStu">addStu</button>
+    <br>
+    {{$store.state.info}}
+    <button @click="addInfo">addInfo</button>
+    <br>---------------异步输出-----------<br>
+    <button @click="asyLog">async</button>
   </div>
 </template>
 
@@ -27,6 +32,16 @@ export default {
     },
     addStu() {
       this.$store.commit('addStu')
+    },
+    addInfo() {
+      this.$store.commit('addInfo')
+    },
+    asyLog() {
+      this.$store.dispatch('asyLog',{
+        number: 5
+      }).then(data => {
+        console.log("data:"+data)
+      })
     }
   }
 }
