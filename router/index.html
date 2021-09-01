@@ -10,5 +10,18 @@
 
 <!--     built files will be auto injected -->
   </body>
+  <script>
+    const test = new Promise((resolve, reject)=>{
+      setTimeout(()=>{
+
+        resolve("hello")
+        reject("err message")
+      },2000)
+    }).then(data => {
+      console.log(data);
+    },err => {
+      console.log(err);
+    })
+  </script>
 
 </html>
