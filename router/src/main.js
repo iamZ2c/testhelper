@@ -4,6 +4,7 @@ import App1 from './App1'
 import router from './router/index.js'
 import v_router from './router/index1.js'
 import store from './store/index'
+import {req} from './network/req'
 
 Vue.config.productionTip = false
 
@@ -17,4 +18,10 @@ new Vue({
   render: h => h(App1),
 })
 
+
+req({
+  url:'/home/multidata'
+})
+  .then(res=>console.log(res))
+  .catch(err=>console.log(err))
 

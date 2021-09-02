@@ -53,7 +53,6 @@ const store = new Vuex.Store(
       filterAge(state) {
         return age => { return state.students.filter(s => s.age>age) }
 
-
       }
     }
   }

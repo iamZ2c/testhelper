@@ -7,4 +7,3 @@ from apitest.models import SugText, Project, Api
 admin.site.register(SugText)
 admin.site.register(Project)
 admin.site.register(Api)
- 
