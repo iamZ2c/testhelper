@@ -1,14 +1,14 @@
 <template>
-  <div>Category</div>
+  <div>Home
+  </div>
 </template>
 
 <script>
 export default {
-  name: "Category"
+  name: "Home",
 }
 </script>
 
 <style scoped>
 
 </style>
-

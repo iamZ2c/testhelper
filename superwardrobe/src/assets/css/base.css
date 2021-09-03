@@ -1,0 +1,51 @@
+@import "./normalize.css";
+
+:root {
+    --color-text: #666;
+    --color-high-text: #ff5777;
+    --color-tint: #ff8198;
+    --color-background: #fff;
+    --font-siza: 14px;
+    --line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#tab-bar{
+  /*延展*/
+  display: flex;
+  /*box-shadow: 0, -1,0*/
+  background-color: #f6f6f6;
+  /*生成绝对定位*/
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 -3px 0 rgba(100,100,100,0.1);
+}
+
+.tab-item {
+  font-size: 10px;
+  flex: 1;
+  text-align: center;
+  height: 49px;
+}
+
+.tab-item img {
+  height: 25px;
+  width: 25px;
+  /*去掉图片下面的间距*/
+  vertical-align: middle;
+}
+

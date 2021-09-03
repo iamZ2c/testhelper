@@ -1,14 +1,13 @@
 <template>
-  <div>Category</div>
+  <div>Profile</div>
 </template>
 
 <script>
 export default {
-  name: "Category"
+  name: "Profile"
 }
 </script>
 
 <style scoped>
 
 </style>
-
