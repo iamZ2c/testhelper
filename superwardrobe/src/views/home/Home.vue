@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import swiper from "@/components/common/Swiper2";
+import swiper from "@/components/common/swiper";
 import NavigationBar from "@/components/common/NavigationBar";
 import {getHomeMultiData} from '@/network/homesreq'
 
