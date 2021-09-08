@@ -10,6 +10,8 @@
     <!--广告位-->
     <swiper :cswiper_info_list="swiper_info_list">
     </swiper>
+
+
     <!--推荐位置-->
     <recommend :recommends="recommend_list"></recommend>
 
