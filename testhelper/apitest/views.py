@@ -257,3 +257,18 @@ def get_localtime(request):
         return HttpResponse(local_time)
     else:
         return HttpResponse('erro')
+
+
+# =============================================================================================
+
+def sup_mall_data_home_mul(request):
+    from apitest.super_mall_data import HOME_MULTI_DATA
+    # response['Access-Control-Allow-Origin'] = "*"
+    #
+    # # 允许你携带Content-Type请求头
+    # response['Access-Control-Allow-Headers'] = "Content-Type"
+    #
+    # # 允许你发送DELETE,PUT
+    # response['Access-Control-Allow-Methods'] = "DELETE,PUT"
+
+    return HttpResponse(HOME_MULTI_DATA)

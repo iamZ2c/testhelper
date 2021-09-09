@@ -69,4 +69,7 @@ urlpatterns = [
     path('get_remark/', apitest.views.get_remark),
     # 获取当前时间
     path('get_localtime/', apitest.views.get_localtime),
+    # ================= super mall  ===
+    path('home/multidata/', apitest.views.sup_mall_data_home_mul),
+
 ]
