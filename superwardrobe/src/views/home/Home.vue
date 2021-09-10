@@ -18,6 +18,7 @@
     <!--当季流行-->
     <future-view></future-view>
 
+
     <!--tab切换-->
     <tab-control class="tab-control" :title_list="['流行','美妆','无敌']"></tab-control>
     <future-view></future-view>
@@ -39,6 +40,7 @@ import NavigationBar from "@/components/common/NavigationBar";
 import Recommend from "@/components/common/RecommendView";
 import FutureView from "@/components/common/FutureView";
 import TabControl from "@/components/common/TabControl";
+
 export default {
   name: "Home",
   components: {
@@ -53,28 +55,36 @@ export default {
       // response_text
       swiper_info_list: [],
       recommend_list: [],
-      good: {
+      goods: {
         'pop': {page: 0, list: []},
-        'news': {page: 0, list: []},
+        'new': {page: 0, list: []},
         'sell': {page: 0, list: []},
       }
     }
   },
   created() {
-    this.getGoodsData()
     this.getMultiData()
+
+
+    this.getGoodsData('pop')
+    this.getGoodsData('new')
+    this.getGoodsData('sell')
   },
-  methods:{
-    getMultiData (){
-        getHomeMultiData().then(res => {
-          console.log(res)
-          this.swiper_info_list = res.data.data.banner.list
-          this.recommend_list = res.data.data.recommend.list
-        })
-      },
-    getGoodsData () {
-      getHomeGoods('pop',1).then(res => {
+  methods: {
+    getMultiData() {
+      getHomeMultiData().then(res => {
         console.log(res)
+        this.swiper_info_list = res.data.data.banner.list
+        this.recommend_list = res.data.data.recommend.list
+      })
+    },
+    getGoodsData(type) {
+      console.log(type)
+      const page = this.goods[type].page + 1
+      getHomeGoods(type, page).then(res => {
+        // 使用 。。。 追加列表
+        this.goods[type].list.push(...res.data.data.list)
+        this.goods[type].page += 1
       })
     },
   }
@@ -88,6 +98,7 @@ export default {
   top: 0;
   background-color: var(--color-tint);
 }
+
 .tab-control {
   background-color: whitesmoke;
   position: sticky;
