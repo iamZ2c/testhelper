@@ -20,11 +20,10 @@
 
 
     <!--tab切换-->
-    <tab-control class="tab-control" :title_list="['流行','美妆','无敌']"></tab-control>
-    <future-view></future-view>
-    <future-view></future-view>
-    <future-view></future-view>
-    <future-view></future-view>
+    <tab-control class="tab-control" :title_list="['流行','新款','热销']"></tab-control>
+
+    <goods-list :goods-list="goods['pop'].list"></goods-list>
+
   </div>
 </template>
 
@@ -35,11 +34,12 @@ import {getHomeMultiData, getHomeGoods} from '@/network/homesreq'
 
 
 // cpn
-import Swiper from "@/components/common/swiper";
+import Swiper from "@/components/common/Swiper/swiper";
 import NavigationBar from "@/components/common/NavigationBar";
 import Recommend from "@/components/common/RecommendView";
 import FutureView from "@/components/common/FutureView";
 import TabControl from "@/components/common/TabControl";
+import GoodsList from "@/components/content/goods/GoodsList";
 
 export default {
   name: "Home",
@@ -48,7 +48,8 @@ export default {
     Swiper,
     Recommend,
     FutureView,
-    TabControl
+    TabControl,
+    GoodsList
   },
   data() {
     return {

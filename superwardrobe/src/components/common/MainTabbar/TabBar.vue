@@ -5,7 +5,7 @@
 </template>
 
 <script>
-require('../../assets/css/base.css')
+require('../../../assets/css/base.css')
 export default {
   name: "TabBar"
 }
