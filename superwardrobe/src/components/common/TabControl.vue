@@ -23,14 +23,16 @@ export default {
   methods:{
     changeIndex(index){
       this.currentIndex = index
+      this.$emit('getChangeIndex', index)
     }
   }
 }
 </script>
 
-<style scoped>
+<style>
 .tab-control {
   display: flex;
+  position: absolute;
 }
 
 .tab-control-item {

@@ -20,9 +20,10 @@
 
 
     <!--tab切换-->
-    <tab-control class="tab-control" :title_list="['流行','新款','热销']"></tab-control>
 
-    <goods-list :goods-list="goods['pop'].list"></goods-list>
+    <tab-control class="tab-control" :title_list="['流行','新款','热销']" @getChangeIndex="changeGoodList($event,index)"></tab-control>
+
+    <goods-list :goods-list="currentGoodsList"></goods-list>
 
   </div>
 </template>
@@ -60,7 +61,8 @@ export default {
         'pop': {page: 0, list: []},
         'new': {page: 0, list: []},
         'sell': {page: 0, list: []},
-      }
+      },
+      currentGoodsList: []
     }
   },
   created() {
@@ -70,23 +72,34 @@ export default {
     this.getGoodsData('pop')
     this.getGoodsData('new')
     this.getGoodsData('sell')
+    this.currentGoodsList = this.currentGoodsList = this.goods['pop'].list
   },
   methods: {
     getMultiData() {
       getHomeMultiData().then(res => {
-        console.log(res)
+
         this.swiper_info_list = res.data.data.banner.list
         this.recommend_list = res.data.data.recommend.list
       })
     },
     getGoodsData(type) {
-      console.log(type)
+
       const page = this.goods[type].page + 1
       getHomeGoods(type, page).then(res => {
         // 使用 。。。 追加列表
         this.goods[type].list.push(...res.data.data.list)
         this.goods[type].page += 1
       })
+    },
+    changeGoodList(index) {
+      switch (index) {
+        case 0: this.currentGoodsList = this.goods['pop'].list
+          break;
+        case 1: this.currentGoodsList = this.goods['new'].list
+          break;
+        case 2: this.currentGoodsList = this.goods['sell'].list
+          break
+      }
     },
   }
 }
@@ -104,8 +117,9 @@ export default {
   background-color: whitesmoke;
   position: sticky;
   top: 44px;
+  bottom: 49px;
   height: 40px;
   padding: 10px;
-  box-shadow: 0 5px 5px #888888;
+  box-shadow: 0 3px 3px #888888;
 }
 </style>
