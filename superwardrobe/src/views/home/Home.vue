@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="home">
     <!--顶部导航栏-->
     <navigation-bar class="nav-bar">
       <template v-slot:nav-center>
@@ -7,23 +7,25 @@
       </template>
     </navigation-bar>
 
-    <!--广告位-->
-    <swiper class="swiper-home" :cswiper_info_list="swiper_info_list">
-    </swiper>
+    <com-scroll class="content">
+
+      <!--广告位-->
+      <swiper class="swiper-home" :cswiper_info_list="swiper_info_list">
+      </swiper>
+      <!--推荐位置-->
+      <recommend :recommends="recommend_list" style="background-color: white"></recommend>
+      <future-view></future-view>
+      <!--tab切换-->
+
+      <tab-control class="tab-control" :title_list="['流行','新款','热销']"
+                   @getChangeIndex="changeGoodList($event,index)"></tab-control>
+      <goods-list :goods-list="currentGoodsList"></goods-list>
+
+      <!--tab切换-->
 
 
-    <!--推荐位置-->
-    <recommend :recommends="recommend_list"></recommend>
+    </com-scroll>
 
-    <!--当季流行-->
-    <future-view></future-view>
-
-
-    <!--tab切换-->
-
-    <tab-control class="tab-control" :title_list="['流行','新款','热销']" @getChangeIndex="changeGoodList($event,index)"></tab-control>
-
-    <goods-list :goods-list="currentGoodsList"></goods-list>
 
   </div>
 </template>
@@ -41,6 +43,7 @@ import Recommend from "@/components/common/RecommendView";
 import FutureView from "@/components/common/FutureView";
 import TabControl from "@/components/common/TabControl";
 import GoodsList from "@/components/content/goods/GoodsList";
+import ComScroll from "@/components/common/BetterScroll/ComScroll";
 
 export default {
   name: "Home",
@@ -50,11 +53,14 @@ export default {
     Recommend,
     FutureView,
     TabControl,
-    GoodsList
+    GoodsList,
+    ComScroll
+
   },
   data() {
     return {
       // response_text
+      scroll: null,
       swiper_info_list: [],
       recommend_list: [],
       goods: {
@@ -93,19 +99,28 @@ export default {
     },
     changeGoodList(index) {
       switch (index) {
-        case 0: this.currentGoodsList = this.goods['pop'].list
+        case 0:
+          this.currentGoodsList = this.goods['pop'].list
           break;
-        case 1: this.currentGoodsList = this.goods['new'].list
+        case 1:
+          this.currentGoodsList = this.goods['new'].list
           break;
-        case 2: this.currentGoodsList = this.goods['sell'].list
+        case 2:
+          this.currentGoodsList = this.goods['sell'].list
           break
       }
     },
-  }
+  },
+
 }
 </script>
 
 <style scoped>
+
+#home {
+  height: 100vh;
+}
+
 .nav-bar {
   position: sticky;
   width: 100%;
@@ -122,4 +137,10 @@ export default {
   padding: 10px;
   box-shadow: 0 3px 3px #888888;
 }
+
+.content {
+  height: calc(100% - 93px);
+  overflow: hidden;
+}
+
 </style>
