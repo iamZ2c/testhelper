@@ -16,12 +16,29 @@ export default {
       scroll: null
     }
   },
+  props: {
+    probeType: {
+      type: Number,
+      default() {
+        return 1
+      },
+    },
+  },
+  methods: {
+    backToTop(x, y, time = 300) {
+      this.scroll.scrollTo(x, y, time)
+    }
+  },
   mounted() {
     this.scroll = new BScroll(this.$refs.wrapper, {
-      click: true
+      click: true,
+      probeType: this.probeType
     })
 
-  }
+    this.scroll.on('scroll', (position) => {
+      this.$emit('scroll', position)
+    })
+  },
 }
 </script>
 

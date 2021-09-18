@@ -6,16 +6,17 @@
 </head>
 <body>
   <div class="box">
-    <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.artdesign.org.cn%2FUpload%2Farticle%2F20210823%2F53752-d7e963290d9ada7393c92f5de9092e90.jpeg&refer=http%3A%2F%2Fwww.artdesign.org.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1634460058&t=bf6325c232fe2cd06e5bcbbb1412d24d" alt="">
-    <p>YIMU粉色西装外套女春秋新款毛呢双排扣高级感羊毛垫肩修身上衣红</p>
-    <span>$199.9</span>
-    <span id="yuanjia">$269.9</span>
-    <div class="store_info">
-      <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.artdesign.org.cn%2FUpload%2Farticle%2F20210823%2F53752-d7e963290d9ada7393c92f5de9092e90.jpeg&refer=http%3A%2F%2Fwww.artdesign.org.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1634460058&t=bf6325c232fe2cd06e5bcbbb1412d24d" alt="">
-      <span>官方旗舰店</span>
+    <div class="boxinbox">
+      <h3>品优快报</h3>
     </div>
-    <p style="color: #888888">----------------------------------</p>
-    <span style="text-align: right;display: block; font-size: 10px; color: #888888">月销售：56</span>
+    <ul>
+      <li><a href="">商品信息链接</a></li>
+      <li><a href="">商品信息链接</a></li>
+      <li><a href="">商品信息链接</a></li>
+      <li><a href="">商品信息链接</a></li>
+      <li><a href="">商品信息链接</a></li>
+      <li><a href="">商品信息链接</a></li>
+    </ul>
   </div>
 </body>
 
@@ -25,42 +26,39 @@
     padding: 0;
     margin: 0;
   }
+  ul {
+    line-height: 30px;
+    height:30px;
+    padding: 10px;
+  }
+  a {
+    text-decoration: none;
+    color: grey;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
 
+  li {
+    list-style: none;
+  }
   .box {
-    height: 450px;
-    width: 300px;
-    background-color: antiquewhite;
     margin: 100px auto;
+    height: 250px;
+    width: 250px;
+    background-color: wheat;
+    border: #666666 solid 1px;
+
   }
-  .box img {
-    width: 100%;
+  .boxinbox {
+    font-size: 12px;
+    border-bottom: 1px #666666 dotted;
+    height: 23px;
+    line-height: 23px;
+    padding-left: 10px;
   }
-  .box p {
-    padding: 0 15px;
-    font-size: 13px;
-  }
-  .box span {
-    margin: 10px 20px;
-    display: inline-flex;
-    color: red;
-    font-size: 20px;
-  }
-  #yuanjia {
-    margin: 10px 20px;
-    display: inline-flex;
-    color: gray;
-    font-size: 15px;
-    text-decoration: line-through;
-  }
-  .store_info img{
-    margin-left: 20px;
-    height: 15px;
-    width: 15px;
-  }
-  .store_info span {
-    font-size: 15px;
-    margin: 5px;
-    color: gainsboro;
+  .boxinbox h3{
+    font-weight: 400;
   }
 </style>
 </html>
