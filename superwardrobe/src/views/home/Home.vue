@@ -9,7 +9,11 @@
     </navigation-bar>
 
     <!--可滚动区域-->
-    <com-scroll class="content" ref="homeScroll" :probe-type="3" @scroll="getScrollPosition">
+    <com-scroll class="content" ref="homeScroll"
+                @scroll="getScrollPosition"
+                @pullUpLoad="loadMore"
+                :probe-type="3"
+                :pull-up-load="true">
 
       <!--广告位-->
       <swiper class="swiper-home" :cswiper_info_list="swiper_info_list">
@@ -74,7 +78,8 @@ export default {
         'sell': {page: 0, list: []},
       },
       currentGoodsList: [],
-      backTopButtonDisplay: false
+      backTopButtonDisplay: false,
+      currentType: 'pop'
     }
   },
   created() {
@@ -87,6 +92,10 @@ export default {
     this.currentGoodsList = this.currentGoodsList = this.goods['pop'].list
   },
   methods: {
+    loadMore() {
+      this.getGoodsData(this.currentType)
+    },
+
     getMultiData() {
       getHomeMultiData().then(res => {
 
@@ -103,18 +112,23 @@ export default {
         // 使用 。。。 追加列表
         this.goods[type].list.push(...res.data.data.list)
         this.goods[type].page += 1
+
+        this.$refs.homeScroll.finishLoad()
       })
     },
     // 切换商品列表
     changeGoodList(index) {
       switch (index) {
         case 0:
+          this.currentType = 'pop'
           this.currentGoodsList = this.goods['pop'].list
           break;
         case 1:
+          this.currentType = 'new'
           this.currentGoodsList = this.goods['new'].list
           break;
         case 2:
+          this.currentGoodsList = 'sell'
           this.currentGoodsList = this.goods['sell'].list
           break
       }
