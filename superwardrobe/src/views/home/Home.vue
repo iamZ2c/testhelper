@@ -96,7 +96,9 @@ export default {
     this.currentGoodsList = this.currentGoodsList = this.goods['pop'].list
   },
   mounted() {
-    const refresh = this.debounce(this.$refs.homeScroll.refresh, 500);
+    // mounted 只执行一次
+    const refresh = this.debounce(this.$refs.homeScroll.refresh, 10);
+
     bus.on('ImgLoading', () => {
       refresh()
     })
@@ -110,7 +112,7 @@ export default {
       return function () {
         if (timer) clearTimeout(timer)
         timer = setTimeout(() => {
-          func.apply()
+          func.call()
         }, delay)
       }
 
