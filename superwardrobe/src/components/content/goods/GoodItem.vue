@@ -1,6 +1,6 @@
 <template>
   <div class="goods-list">
-    <img class="goods-item-img" :src="goodObj.show.img" alt="">
+    <img class="goods-item-img" :src="goodObj.show.img" alt="" @load="onImgLoad">
     <div class="goods-info">
       <p>{{ goodObj.title }}</p>
       <span>¥:{{goodObj.price}}</span>
@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import bus from "@/utils/index.ts";
+
 export default {
   name: "GoodItem",
   props: {
@@ -21,6 +23,11 @@ export default {
       }
     }
   },
+  methods: {
+    onImgLoad() {
+     bus.emit('ImgLoading')
+    }
+  }
 }
 </script>
 

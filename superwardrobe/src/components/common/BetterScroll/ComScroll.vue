@@ -32,8 +32,12 @@ export default {
     },
     finishLoad() {
       this.scroll.finishPullUp()
+    },
+    refresh() {
+      console.log("used")
       this.scroll.refresh()
-    }
+    },
+
 
   },
   mounted() {

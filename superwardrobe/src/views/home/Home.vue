@@ -53,6 +53,10 @@ import GoodsList from "@/components/content/goods/GoodsList";
 import ComScroll from "@/components/common/BetterScroll/ComScroll";
 import BackTop from "@/components/content/BackTop/BackTop";
 
+
+// bus
+import bus from "@/utils/index.ts";
+
 export default {
   name: "Home",
   components: {
@@ -91,7 +95,27 @@ export default {
     this.getGoodsData('sell')
     this.currentGoodsList = this.currentGoodsList = this.goods['pop'].list
   },
+  mounted() {
+    const refresh = this.debounce(this.$refs.homeScroll.refresh, 500);
+    bus.on('ImgLoading', () => {
+      refresh()
+    })
+
+
+  },
   methods: {
+    // 防抖函数
+    debounce(func, delay) {
+      let timer = null
+      return function () {
+        if (timer) clearTimeout(timer)
+        timer = setTimeout(() => {
+          func.apply()
+        }, delay)
+      }
+
+    },
+
     loadMore() {
       this.getGoodsData(this.currentType)
     },
@@ -112,11 +136,11 @@ export default {
         // 使用 。。。 追加列表
         this.goods[type].list.push(...res.data.data.list)
         this.goods[type].page += 1
-
+        // 告诉scroll已经下拉加载完成了
         this.$refs.homeScroll.finishLoad()
       })
     },
-    // 切换商品列表
+    // 切换商品列表，并且切换goodlist type
     changeGoodList(index) {
       switch (index) {
         case 0:
@@ -134,12 +158,12 @@ export default {
       }
     },
     // 监听返回最上层方法，vue3.0取消了 .native 可以直接使用
-    backTopClick () {
-      this.$refs.homeScroll.backToTop(0,0, 1000)
+    backTopClick() {
+      this.$refs.homeScroll.backToTop(0, 0, 1000)
     },
 
     // 监听滑动，并且展示BackTop按钮
-    getScrollPosition (position) {
+    getScrollPosition(position) {
       this.backTopButtonDisplay = position.y < -1000;
     }
   },
@@ -176,3 +200,4 @@ export default {
 }
 
 </style>
+

@@ -13,7 +13,7 @@ export default {
   name: "TabBarItem",
   computed: {
     isActive(){
-      // 那个路由被激活了,$route就是那个路由
+      // $route就是被激活那个路由
       return this.$route.path.indexOf(this.path) !== -1;
     },
     text_color_style() {
