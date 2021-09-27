@@ -8,6 +8,10 @@
       </template>
     </navigation-bar>
 
+    <tab-control id="ttab-control" :title_list="['流行','新款','热销']"
+                 v-show="topTabBarDisplay"
+                 @getChangeIndex="changeGoodList($event,index)"></tab-control>
+
     <!--可滚动区域-->
     <com-scroll class="content" ref="homeScroll"
                 @scroll="getScrollPosition"
@@ -83,7 +87,9 @@ export default {
       },
       currentGoodsList: [],
       backTopButtonDisplay: false,
-      currentType: 'pop'
+      currentType: 'pop',
+      topTabBarDisplay: false,
+      currentScrollY: 0,
     }
   },
   created() {
@@ -95,6 +101,7 @@ export default {
     this.getGoodsData('sell')
     this.currentGoodsList = this.currentGoodsList = this.goods['pop'].list
   },
+
   mounted() {
     // mounted 只执行一次
     const refresh = this.debounce(this.$refs.homeScroll.refresh, 10);
@@ -102,10 +109,16 @@ export default {
     bus.on('ImgLoading', () => {
       refresh()
     })
-
-
+  },
+  // vue3.0 keepalive的写法不一样注意
+  activated() {
+    this.$refs.homeScroll.backToTop(0, this.currentScrollY, 0)
+  },
+  deactivated() {
+    this.currentScrollY = this.$refs.homeScroll.scroll.y
   },
   methods: {
+
     // 防抖函数
     debounce(func, delay) {
       let timer = null
@@ -167,6 +180,8 @@ export default {
     // 监听滑动，并且展示BackTop按钮
     getScrollPosition(position) {
       this.backTopButtonDisplay = position.y < -1000;
+
+      this.topTabBarDisplay = position.y < -571;
     }
   },
 
@@ -180,10 +195,22 @@ export default {
 }
 
 .nav-bar {
-  position: sticky;
+  position: relative;
+  z-index: 9999;
   width: 100%;
   top: 0;
   background-color: var(--color-tint);
+}
+
+#ttab-control {
+  background-color: whitesmoke;
+  position: relative;
+  z-index: 9;
+  height: 40px;
+  bottom: 49px;
+  margin-top: -46px;
+  padding: 10px;
+  box-shadow: 0 3px 3px #888888;
 }
 
 .tab-control {

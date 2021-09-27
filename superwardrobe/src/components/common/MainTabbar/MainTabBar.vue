@@ -46,7 +46,8 @@
         </template>
       </tab-bar-item>
     </tab-bar>
-    <router-view></router-view>
+
+
   </div>
 </template>
 
