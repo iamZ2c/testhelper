@@ -1,12 +1,17 @@
 <template>
 <div>
-  {{goodIid}}
+  <detail-navbar></detail-navbar>
 </div>
 </template>
 
 <script>
+import DetailNavbar from "./detailcpn/DetailNavbar";
+
 export default {
   name: "Detail",
+  components:{
+    DetailNavbar
+  },
   data(){
     return {
       goodIid:null

@@ -4,6 +4,7 @@
       <a :href="cswiper_info.link">
         <img :src=cswiper_info.image style="width:100%;height:150px;">
       </a>
+
     </div>
   </div>
 </template>
