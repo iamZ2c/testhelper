@@ -38,7 +38,7 @@ export default {
       this.currentIndex = index
     },
     backTo() {
-      this.$router.push('/home')
+      this.$router.back()
     }
   },
 }

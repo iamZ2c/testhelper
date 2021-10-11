@@ -48,7 +48,7 @@ import {getHomeMultiData, getHomeGoods} from '@/network/homesreq'
 
 
 // cpn
-import Swiper from "@/components/common/Swiper/swiper";
+import Swiper from "@/components/common/Swiper/Swiper";
 import NavigationBar from "@/components/common/NavigationBar";
 import Recommend from "@/components/common/RecommendView";
 import FutureView from "@/components/common/FutureView";
@@ -174,6 +174,7 @@ export default {
     },
     // 监听返回最上层方法，vue3.0取消了 .native 可以直接使用
     backTopClick() {
+      console.log("back to top")
       this.$refs.homeScroll.backToTop(0, 0, 1000)
     },
 
