@@ -3,10 +3,11 @@
     <main-tab-bar></main-tab-bar>
 
     <router-view v-slot="{ Component }">
-      <keep-alive>
+      <keep-alive exclude="Detail">
         <component :is="Component" />
       </keep-alive>
     </router-view>
+
   </div>
 </template>
 

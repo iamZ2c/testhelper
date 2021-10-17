@@ -1,12 +1,12 @@
 import {req} from './axiosreq'
 
-export function getHomeMultiData () {
+export function getHomeMultiData() {
   return req({
     url: '/home/multidata'
   })
 }
 
-export function getHomeGoods (type, page) {
+export function getHomeGoods(type, page) {
   return req({
     url: 'home/data',
     params: {
@@ -15,3 +15,5 @@ export function getHomeGoods (type, page) {
     }
   })
 }
+
+
