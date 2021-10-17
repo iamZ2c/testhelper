@@ -4,12 +4,12 @@
     <div class="info-price">
       <span class="n-price">{{ goods.price }}</span>
       <span class="o-price">{{ goods.oldPrice }}</span>
-      <span v-if="goods.discountDesc" class="discount">{{goods.discountDesc}}</span>
+      <span v-if="goods.discountDesc" class="discount">{{ goods.discountDesc }}</span>
     </div>
     <div class="info-other">
-      <span>{{goods.columns[0]}}</span>
-      <span>{{goods.columns[1]}}</span>
-      <span>{{goods.services[goods.services.length-1].name}}</span>
+      <span>{{ goods.columns[0] }}</span>
+      <span>{{ goods.columns[1] }}</span>
+      <span style="margin-right: 0">{{ goods.services[goods.services.length - 1].name }}</span>
     </div>
   </div>
 </template>
@@ -37,14 +37,17 @@ export default {
   height: 28px;
   display: inline-block;
 }
+
 .n-price {
   color: #ff5777;
   font-size: 25px;
 }
+
 .o-price {
   color: darkgray;
   text-decoration: line-through;
 }
+
 .discount {
   line-height: 18px;
   text-align: center;
@@ -57,4 +60,16 @@ export default {
   border-radius: 25px;
   position: absolute;
 }
+
+.info-other {
+  margin-top: 15px;
+  line-height: 30px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(100,100,100,.1);
+  padding: 0 10px;
+  color: darkgrey;
+}
+
 </style>

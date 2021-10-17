@@ -21,6 +21,7 @@ export default {
   methods: {
     autoPlay() {
       this.mark++;
+
       if (this.mark === this.cswiper_info_list.length) { //当遍历到最后一张图片置零
         this.mark = 0
       }

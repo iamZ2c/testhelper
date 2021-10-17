@@ -15,7 +15,6 @@ export default {
   data() {
     return {
       mark: 0,
-
     }
   },
   methods: {
@@ -33,6 +32,7 @@ export default {
     }
   },
   created() {
+    console.log(this.cswiper_info_list)
     this.play()
   }
 }
