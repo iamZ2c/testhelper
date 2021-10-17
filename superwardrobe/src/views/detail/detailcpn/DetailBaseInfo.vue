@@ -4,13 +4,19 @@
     <div class="info-price">
       <span class="n-price">{{ goods.price }}</span>
       <span class="o-price">{{ goods.oldPrice }}</span>
-      <span v-if="goods.discountDesc" class="discount">{{ goods.discountDesc }}</span>
+      <span v-show="goods.discountDesc !== null" class="discount">{{ goods.discountDesc }}</span>
     </div>
     <div class="info-other">
       <span>{{ goods.columns[0] }}</span>
       <span>{{ goods.columns[1] }}</span>
       <span style="margin-right: 0">{{ goods.services[goods.services.length - 1].name }}</span>
     </div>
+  </div>
+  <div class="info-services">
+    <span class="info-service-item" v-for="index in goods.services.length-1" :key="index">
+      <img :src="goods.services[index-1].icon" alt="">
+      <span>{{goods.services[index-1].name}}</span>
+    </span>
   </div>
 </template>
 
@@ -19,7 +25,10 @@ export default {
   name: "DetailBaseInfo",
   props: [
     'goods'
-  ]
+  ],
+  created() {
+    console.log(this.goods.discountDesc)
+  },
 }
 </script>
 
