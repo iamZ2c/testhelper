@@ -32,7 +32,7 @@ export default {
     }
   },
   created() {
-    console.log(this.cswiper_info_list)
+    // console.log(this.cswiper_info_list)
     this.play()
   }
 }

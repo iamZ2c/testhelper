@@ -1,14 +1,16 @@
 <template>
-  <div>
+  <div id="detail">
     <detail-navbar></detail-navbar>
     <swiper-for-detail :cswiper_info_list="topImages"></swiper-for-detail>
     <detail-base-info :goods="goods"></detail-base-info>
+    <detail-shop-info :shop="shop"></detail-shop-info>
   </div>
 </template>
 
 <script>
 import DetailNavbar from "./detailcpn/DetailNavbar";
 import DetailBaseInfo from "@/views/detail/detailcpn/DetailBaseInfo";
+import DetailShopInfo from "@/views/detail/detailcpn/DetailShopInfo";
 import {getDetail, Goods, Shop} from "@/network/detailreq";
 
 import SwiperForDetail from "../../components/common/Swiper/SwiperForDetail";
@@ -18,14 +20,15 @@ export default {
   components: {
     DetailNavbar,
     SwiperForDetail,
-    DetailBaseInfo
+    DetailBaseInfo,
+    DetailShopInfo
   },
   data() {
     return {
       goodIid: null,
       topImages: [],
-      goods:{},
-      shop:{},
+      goods: {},
+      shop: {},
     }
   },
   created() {
@@ -60,5 +63,9 @@ export default {
 </script>
 
 <style scoped>
-
+#detail {
+  position: relative;
+  z-index: 9;
+  background-color: white;
+}
 </style>

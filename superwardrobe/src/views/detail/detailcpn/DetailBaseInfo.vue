@@ -27,7 +27,7 @@ export default {
     'goods'
   ],
   created() {
-    console.log(this.goods.discountDesc)
+    // console.log(this.goods.discountDesc)
   },
 }
 </script>
@@ -79,6 +79,25 @@ export default {
   border-bottom: 1px solid rgba(100,100,100,.1);
   padding: 0 10px;
   color: darkgrey;
+}
+.info-services {
+  color: darkgray;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px;
+  border-bottom: 1px gainsboro solid;
+}
+
+.info-services {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 25px;
+  height: 50px;
+}
+
+.info-service-item > img{
+  height: 12px;
+  width: 12px;
 }
 
 </style>
