@@ -1,9 +1,17 @@
 <template>
   <div id="detail">
     <detail-navbar></detail-navbar>
-    <swiper-for-detail :cswiper_info_list="topImages"></swiper-for-detail>
-    <detail-base-info :goods="goods"></detail-base-info>
-    <detail-shop-info :shop="shop"></detail-shop-info>
+      <com-scroll class="content">
+        <swiper-for-detail :cswiper_info_list="topImages"></swiper-for-detail>
+        <detail-base-info :goods="goods"></detail-base-info>
+        <detail-shop-info :shop="shop"></detail-shop-info>
+        <detail-shop-info :shop="shop"></detail-shop-info>
+        <detail-shop-info :shop="shop"></detail-shop-info>
+        <detail-shop-info :shop="shop"></detail-shop-info>
+        <detail-shop-info :shop="shop"></detail-shop-info>
+        <detail-shop-info :shop="shop"></detail-shop-info>
+        <detail-shop-info :shop="shop"></detail-shop-info>
+      </com-scroll>
   </div>
 </template>
 
@@ -12,6 +20,7 @@ import DetailNavbar from "./detailcpn/DetailNavbar";
 import DetailBaseInfo from "@/views/detail/detailcpn/DetailBaseInfo";
 import DetailShopInfo from "@/views/detail/detailcpn/DetailShopInfo";
 import {getDetail, Goods, Shop} from "@/network/detailreq";
+import ComScroll from "../../components/common/BetterScroll/ComScroll";
 
 import SwiperForDetail from "../../components/common/Swiper/SwiperForDetail";
 
@@ -21,7 +30,8 @@ export default {
     DetailNavbar,
     SwiperForDetail,
     DetailBaseInfo,
-    DetailShopInfo
+    DetailShopInfo,
+    ComScroll,
   },
   data() {
     return {
@@ -67,5 +77,10 @@ export default {
   position: relative;
   z-index: 9;
   background-color: white;
+  height: calc(100vh);
+}
+.content {
+  height: calc(100% - 44px);
+  overflow: hidden;
 }
 </style>

@@ -1,6 +1,5 @@
 <template>
-  <div class="shop-info">
-
+  <div v-if="Object.keys(shop).length !== 0" class="shop-info">
     <div class="shop-info-top">
       <div class="shop-title-logo">
         <img :src="shop.shopLogo" alt="">
