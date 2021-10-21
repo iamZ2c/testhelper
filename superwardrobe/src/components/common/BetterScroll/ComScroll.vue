@@ -34,7 +34,7 @@ export default {
       this.scroll.finishPullUp()
     },
     refresh() {
-      console.log("used")
+      console.log("comScroll刷新函数被调用")
       this.scroll.refresh()
     },
 

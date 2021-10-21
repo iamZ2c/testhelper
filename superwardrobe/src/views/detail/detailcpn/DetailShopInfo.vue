@@ -20,6 +20,7 @@
         </div>
       </div>
     </div>
+    <div class="shop-info-button">进店逛逛</div>
 
   </div>
 </template>
@@ -37,7 +38,7 @@ export default {
     }
   },
   created() {
-    console.log(this.shop)
+    // console.log(this.shop)
     this.sell = this.shop.cSells / 10000
     this.sell = this.sell.toFixed(1)
 
@@ -46,6 +47,10 @@ export default {
 </script>
 
 <style scoped>
+.shop-info {
+  box-shadow: 0 5px gainsboro;
+  padding-bottom: 25px;
+}
 .shop-info-top {
   display: flex;
 }
@@ -104,5 +109,20 @@ export default {
   background-color: green;
   margin-left: 20px;
   color: white
+}
+
+.shop-info-button {
+  margin-left: calc(50vw - 60px);
+  font-size: 13px;
+  height: 25px;
+  width: 120px;
+  margin-top: 15px;
+  font-weight: 18;
+  background-color: seashell;
+  border-radius: 8px 8px;
+  box-shadow: 0 0 white;
+  border-color: white;
+  text-align: center;
+  line-height: 25px;
 }
 </style>

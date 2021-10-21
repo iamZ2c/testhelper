@@ -32,7 +32,7 @@ export default {
   created() {
     // console.log(this.goods.discountDesc)
     this.discountDesc = this.goods.discountDesc
-    console.log(this.discountDesc)
+    console.log(this.goods);
   },
 }
 </script>
