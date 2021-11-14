@@ -6,6 +6,10 @@
       <detail-base-info :goods="goods"></detail-base-info>
       <detail-shop-info :shop="shop"></detail-shop-info>
       <detail-image-info :detailInfo="detailImageInfo"></detail-image-info>
+      <detail-item-params :productInfo="itemParams"></detail-item-params>
+      <detail-comment-info :commentInfo="commentInfo"></detail-comment-info>
+      <detail-recommend-list style="margin-top: 20px" :goodsList="recommendList"></detail-recommend-list>
+
     </com-scroll>
   </div>
 </template>
@@ -15,8 +19,13 @@ import DetailNavbar from "./detailcpn/DetailNavbar";
 import DetailBaseInfo from "@/views/detail/detailcpn/DetailBaseInfo";
 import DetailShopInfo from "@/views/detail/detailcpn/DetailShopInfo";
 import DetailImageInfo from "@/views/detail/detailcpn/DetailImageInfo";
-import {getDetail, Goods, Shop} from "@/network/detailreq";
+import DetailItemParams from "@/views/detail/detailcpn/DetailItemParams";
+import DetailCommentInfo from "@/views/detail/detailcpn/DetailCommentInfo";
+import DetailRecommendList from "@/views/detail/detailcpn/DetailRecommendList";
+import {getDetail,getRecommend, Goods, Shop} from "@/network/detailreq";
 import ComScroll from "../../components/common/BetterScroll/ComScroll";
+
+
 
 import SwiperForDetail from "../../components/common/Swiper/SwiperForDetail";
 import bus from "@/utils/index.ts";
@@ -24,12 +33,15 @@ import bus from "@/utils/index.ts";
 export default {
   name: "Detail",
   components: {
+    DetailCommentInfo,
     DetailNavbar,
     SwiperForDetail,
     DetailBaseInfo,
     DetailShopInfo,
     ComScroll,
     DetailImageInfo,
+    DetailItemParams,
+    DetailRecommendList
   },
   data() {
     return {
@@ -37,11 +49,18 @@ export default {
       topImages: [],
       goods: {},
       shop: {},
-      detailImageInfo: {}
+      detailImageInfo: {},
+      itemParams: {},
+      commentInfo: {},
+      recommendList:[],
     }
   },
 
   created() {
+    getRecommend().then(req => {
+      this.recommendList = req.data.data.list
+    })
+
     this.getGoodsIid()
     getDetail(this.goodIid).then(req => {
       // 传入详情的banner
@@ -57,7 +76,12 @@ export default {
       this.shop = new Shop(req.data.result.shopInfo)
       // 取出详情信息
       this.detailImageInfo = req.data.result.detailInfo
-      console.log(this.detailImageInfo)
+      // 获取商品参数
+      this.itemParams = req.data.result.itemParams
+      //取出评论信息
+      if (req.data.result.rate !== null) {
+        this.commentInfo = req.data.result.rate
+      }
     })
 
   },
